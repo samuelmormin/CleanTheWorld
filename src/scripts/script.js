@@ -16,19 +16,12 @@ planetEarth.addEventListener('animationend', function()
     planetEarth.classList.remove('clickEffect1');
 });
 
-// body.addEventListener('mousemove', function(event)
-// {
-//     mouse.x                 = event.clientX;
-//     mouse.y                 = event.clientY;
-//     mouseDivPosition.x      = mouse.x + 10;
-//     mouseDivPosition.y      = mouse.y - 10;
-//     mouseDiv.style.left     = mouseDivPosition.x + "px";
-//     mouseDiv.style.top      = mouseDivPosition.y + "px";
-// });
-
-document.addEventListener('click', function()
+body.addEventListener('mousemove', function(event)
 {
-    var element = document.createElement("P");
-    var p = document.createTextNode("+1");
-
+    mouse.x                 = event.clientX;
+    mouse.y                 = event.clientY;
+    mouseDivPosition.x      = mouse.x + 10;
+    mouseDivPosition.y      = mouse.y - 10;
+    mouseDiv.style.left     = mouseDivPosition.x + "px";
+    mouseDiv.style.top      = mouseDivPosition.y + "px";
 });
