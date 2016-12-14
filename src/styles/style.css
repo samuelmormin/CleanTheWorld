@@ -32,6 +32,13 @@ div.container
     height: 30px;
     font-size: 20px;
     color: #FFFFFF;
+    transition: opacity 1s;
+    will-change: opacity;
+}
+
+@keyframes plusOneAnim {
+    from {transform: translateY(0px);}
+    to   {transform: translateY(-50px);opacity: 0;}
 }
 
 /*******************************************

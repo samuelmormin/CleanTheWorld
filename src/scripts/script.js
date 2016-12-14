@@ -2,9 +2,8 @@ var body                 = document.querySelector("body");
 var planetEarth          = document.querySelector(".planet");
 var mouseDiv             = document.querySelector("div.mouseClickEffect");
 var mouse                = { x : 0, y : 0 };
-var mouseDivPosition      = { x : 0, y : 0 };
+var mouseDivPosition     = { x : 0, y : 0 };
 
-console.log(body);
 
 planetEarth.addEventListener('click', function()
 {
@@ -14,7 +13,7 @@ planetEarth.addEventListener('click', function()
 planetEarth.addEventListener('animationend', function()
 {
     planetEarth.classList.remove('clickEffect1');
-    mouseDiv.removeChild(mouseDiv.firstChild);
+
 });
 
 body.addEventListener('mousemove', function(event)
@@ -27,6 +26,13 @@ body.addEventListener('mousemove', function(event)
     mouseDiv.style.top      = mouseDivPosition.y + "px";
 });
 
-planetEarth.addEventListener('click', function(){
+planetEarth.addEventListener('click', function()
+{
     mouseDiv.innerHTML = "<p>+1</p>";
+    mouseDiv.firstChild.style.animation = "plusOneAnim 0.6s ease";
+});
+
+mouseDiv.addEventListener('animationend', function(){
+    mouseDiv.firstChild.style.animation = "";
+    mouseDiv.removeChild(mouseDiv.firstChild);
 });
