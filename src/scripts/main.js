@@ -13,7 +13,7 @@ clicker.ressources.gauge = document.querySelector(".ratio2");
 clicker.ressources.gauge_pourcent = document.querySelector(".percentage");
 // clicker.ressources.energie_click = document.querySelector(".click-energie-value");
 // clicker.ressources.energie_button = document.querySelector(".energie-value");
-// clicker.ressources.energie_total = document.querySelector(".energie-total");
+clicker.ressources.energie_total = document.querySelector(".incrementingEnergie");
 // clicker.ressources.detritus_auto = document.querySelector(".ditritus-auto");
 // clicker.ressources.detritus_auto_value = document.querySelector(".click-detritus-auto-value");
 // clicker.ressources.clicker_level = document.querySelector(".cliker-level");
@@ -34,7 +34,7 @@ clicker.global_var.purification_current_percentage = 0
 clicker.global_var.energie_total = 0; //number of energie total
 clicker.global_var.energie_per_sec = 0; //energie per second
 clicker.global_var.purify_per_sec = 0; //purification per second
-clicker.global_var.detritus_per_sec = 0; //detritus per second
+clicker.global_var.detritus_per_sec = 10; //detritus per second
 clicker.global_var.click_aids = //list of items to have more detritus per click
 	[{
 		name: "gants",
@@ -192,7 +192,6 @@ console.log(clicker);
 // incrementation of detritus
 clicker.ressources.planet_current.addEventListener("click", function(){
 	clicker.global_var.detritus += clicker.global_var.detritus_click_result;
-    console.log(	clicker.global_var.detritus);
 	clicker.global_var.money = clicker.global_var.money + parseFloat(clicker.global_var.detritus_click_result/10);
 	clicker.global_var.purification_current = clicker.global_var.purification_current + parseFloat(clicker.global_var.detritus_click_result/2);//10 detritus for 1 purification
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
@@ -200,6 +199,24 @@ clicker.ressources.planet_current.addEventListener("click", function(){
 	purificationChecker();
 });
 
+/*generate ressources per second*/
+function get_ressources(){
+	clicker.global_var.energie_total += clicker.global_var.energie_per_sec;
+	clicker.ressources.energie_total.innerHTML = clicker.global_var.energie_total;
+
+	clicker.global_var.money = clicker.global_var.money + parseFloat(clicker.global_var.energie_per_sec/5);
+	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+
+	clicker.global_var.detritus = parseFloat(clicker.global_var.detritus + clicker.global_var.detritus_per_sec);
+	clicker.global_var.money = clicker.global_var.money + parseFloat(clicker.global_var.detritus_per_sec/10);
+	clicker.global_var.purification_current = clicker.global_var.purification_current + parseFloat(clicker.global_var.detritus_per_sec/2);//10 detritus for 1 purification
+	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
+
+	clicker.global_var.purification_current += parseFloat(clicker.global_var.purify_per_sec/4);
+	purificationChecker();
+}
+
+var sec_generator = setInterval(get_ressources, 1000);
 
 /*Gauge of purification checker*/
 function purificationChecker(){
