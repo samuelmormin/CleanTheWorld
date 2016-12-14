@@ -14,6 +14,7 @@ planetEarth.addEventListener('click', function()
 planetEarth.addEventListener('animationend', function()
 {
     planetEarth.classList.remove('clickEffect1');
+    mouseDiv.removeChild(mouseDiv.firstChild);
 });
 
 body.addEventListener('mousemove', function(event)
@@ -24,4 +25,8 @@ body.addEventListener('mousemove', function(event)
     mouseDivPosition.y      = mouse.y - 10;
     mouseDiv.style.left     = mouseDivPosition.x + "px";
     mouseDiv.style.top      = mouseDivPosition.y + "px";
+});
+
+planetEarth.addEventListener('click', function(){
+    mouseDiv.innerHTML = "<p>+1</p>";
 });
