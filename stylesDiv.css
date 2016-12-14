@@ -1,3 +1,4 @@
-.clicker_shop_block{
-    position: relative;
+.inventory ul li img{
+    width: 100%;
+    display: block;
 }
