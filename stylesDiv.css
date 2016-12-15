@@ -47,6 +47,7 @@ inventaire
     display: block;
     position: absolute;
     z-index: 1;
+    transform: translateY(10px);
 }
 
 .inventory ul li div{

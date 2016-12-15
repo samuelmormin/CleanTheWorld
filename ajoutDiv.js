@@ -6,10 +6,6 @@ var inventory_ul = document.querySelector('.inventory ul');
 var anecdote = document.querySelector('.anecdote');
 var anecdotes_p = document.querySelector('.anecdote p');
 
-clicker_shop_block.addEventListener('click', function(){
-    inventory_ul.innerHTML += '<li>'+document.querySelector('.clicker_shop_block ul li').firstChild+'<div class="inventory_number"><p>3</p></div></li>';
-});
-
 clicker.global_var.anecdotes = [
     {
         number: 1,
