@@ -240,7 +240,7 @@ function get_ressources(){
 	purificationChecker();
 }
 
-//var sec_generator = setInterval(get_ressources, 1000);
+var sec_generator = setInterval(get_ressources, 1000);
 
 function add_money(addCoeff, type){
 	if(type == "detritus"){
@@ -276,8 +276,6 @@ function updateLiFonction(){
 	for(var i = 0; i < clicker.ressources.shop_items.length; i++){
 		clicker.ressources.shop_items[i].addEventListener("click", updateItemShop);
 	}
-
-	//	console.log(clicker.ressources.shop_items[clicker.global_var.next_display_item-1].getAttribute("data-key"));
 }
 
 function planetImagesChange(){
@@ -347,7 +345,9 @@ function buyDetritusTool(item){
 			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 			clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
 			clicker.global_var.detritus_click_result += clicker.global_var.ressources[item].value; 
-			console.log(clicker.global_var.click_aids[select_value].name + " : " + clicker.global_var.click_aids[select_value].level + " : " + clicker.global_var.ressources[item].price + " pièce");
+//			console.log(clicker.global_var.click_aids[select_value].name + " : " + clicker.global_var.click_aids[select_value].level + " : " + clicker.global_var.ressources[item].price + " pièce");
+			console.log(clicker.ressources.shop_items[item].querySelector(".price-item"));
+			clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
 		}
 }
 
@@ -372,18 +372,14 @@ function buyDetritusAids(item){
 //item to get energie
 function buyEnergieItem(item){
 	console.log("buy energie per sec || " + item);
-//	clicker.ressources.energie_click = document.querySelector(".click-energie-value");
-//	if(clicker.ressources.energie_click.value != "null"){
-//		var select_value = parseInt(clicker.ressources.energie_click.value);
-//		if(clicker.global_var.energie_tool[select_value].price <= clicker.global_var.money){ 
-//			clicker.global_var.money -= clicker.global_var.energie_tool[select_value].price;
-//			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
-//			clicker.global_var.energie_per_sec = parseFloat(clicker.global_var.energie_per_sec + clicker.global_var.energie_tool[select_value].value_energie/40);
-//			clicker.global_var.purify_per_sec = parseFloat(clicker.global_var.purify_per_sec + clicker.global_var.energie_tool[select_value].value_purification/20);
-//			clicker.global_var.energie_tool[select_value].available++;
-//			clicker.global_var.energie_tool[select_value].price = parseFloat(clicker.global_var.energie_tool[select_value].price * 1.2);
-//			console.log(clicker.global_var.energie_tool[select_value].name + " : " + clicker.global_var.energie_tool[select_value].available + " : " + clicker.global_var.energie_tool[select_value].price + " pièce");
-//		}
-//	}
+		if(clicker.global_var.ressources[item].price <= clicker.global_var.money){ 
+			clicker.global_var.money -= clicker.global_var.ressources[item].price;
+			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+			clicker.global_var.energie_per_sec = parseFloat(clicker.global_var.energie_per_sec + clicker.global_var.ressources[item].value_energie/40);
+			clicker.global_var.purify_per_sec = parseFloat(clicker.global_var.purify_per_sec + clicker.global_var.ressources[item].value_purification/20);
+			clicker.global_var.ressources[item].available++;
+			clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
+			clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		}
 }
 
