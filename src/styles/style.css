@@ -187,10 +187,15 @@ div.planet img
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    transition: opacity 1s;
+    transition: opacity 3s;
+    opacity: 1;
     will-change: opacity;
 }
 
+.planetOpacity
+{
+    opacity: 0;
+}
 
 .moon
 {
@@ -607,6 +612,10 @@ p.price-item
     border-radius: 10px;
     display: inline-block;
     margin-right: 10px;
+}
+
+::-webkit-scrollbar {
+display: none;
 }
 
 .inventory ul li:nth-child(3n+1)
