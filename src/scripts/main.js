@@ -6,25 +6,19 @@ clicker.global_var = {};
 clicker.ressources.planet_current = document.querySelector(".planet"); // planet
 clicker.ressources.planet_images = document.querySelectorAll(".planet div");
 clicker.ressources.detritus_result = document.querySelector(".counter"); // counter of detritus
-// clicker.ressources.detritus_click = document.querySelector(".counter");
-// clicker.ressources.detritus_button = document.querySelector(".ditritus-value");
-clicker.ressources.money = document.querySelector(".incrementingCoin");
-clicker.ressources.gauge = document.querySelector(".ratio2");
-clicker.ressources.gauge_pourcent = document.querySelector(".percentage");
-// clicker.ressources.energie_click = document.querySelector(".click-energie-value");
-// clicker.ressources.energie_button = document.querySelector(".energie-value");
-clicker.ressources.energie_total = document.querySelector(".incrementingEnergie");
-// clicker.ressources.detritus_auto = document.querySelector(".ditritus-auto");
-// clicker.ressources.detritus_auto_value = document.querySelector(".click-detritus-auto-value");
-clicker.ressources.shop = document.querySelector('.clicker_shop_block ul');
-clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li');
+clicker.ressources.money = document.querySelector(".incrementingCoin"); //counter of money
+clicker.ressources.gauge = document.querySelector(".ratio2"); //gauge of purification
+clicker.ressources.gauge_pourcent = document.querySelector(".percentage"); //current percentage
+clicker.ressources.energie_total = document.querySelector(".incrementingEnergie"); // counter of energie
+clicker.ressources.shop = document.querySelector('.clicker_shop_block ul'); //shop element
+clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li'); //shop's items elements
 
 //Global variables
 clicker.global_var.current_level = 1; // start level
 clicker.global_var.coeficient_price = 2; // coefficient for price
 clicker.global_var.coefficient_purification = 1.2; // coefficient of purification for each level
-clicker.global_var.current_image = 5;
-clicker.global_var.generat_per_sec = false;
+clicker.global_var.current_image = 5; //current planet state
+clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 clicker.global_var.detritus = 0; //number of detritus collected
 clicker.global_var.detritus_click_result = 10; //number of detritus collected per click
 clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
@@ -38,7 +32,7 @@ clicker.global_var.energie_total = 0; //number of energie total
 clicker.global_var.energie_per_sec = 0; //energie per second
 clicker.global_var.purify_per_sec = 0; //purification per second
 clicker.global_var.detritus_per_sec = 0; //detritus per second
-clicker.global_var.next_display_item = 0;
+clicker.global_var.next_display_item = 0; //item to display in the shop
 clicker.global_var.ressources = [
 	{ 
 		name: "gants",
@@ -366,13 +360,28 @@ function updateShop(){
 		var next_item = clicker.global_var.ressources[clicker.global_var.next_display_item].price;
 		if((next_item <= clicker.global_var.money_total)&&(clicker.global_var.ressources[clicker.global_var.next_display_item].show == 0)){
 			clicker.global_var.ressources[clicker.global_var.next_display_item].show = 1;
-			var newItem = '<li data-key="'+
-					clicker.global_var.next_display_item + '"> ' +
-					'<img class ="iconStore" src="src/img/gloves.png" alt="ShopItem"><p class="name"> ' +
-					clicker.global_var.ressources[clicker.global_var.next_display_item].name + ' </p> ' +
-					'<p class="price-item"> ' + clicker.global_var.ressources[clicker.global_var.next_display_item].price + 
-					' pièces</p></li>';
-			clicker.ressources.shop.innerHTML += newItem;
+			var newItem = document.createElement("LI");
+			newItem.setAttribute("data-key", clicker.global_var.next_display_item);
+			
+			var newIcon = document.createElement("IMG");
+			newIcon.setAttribute("src", clicker.global_var.ressources[clicker.global_var.next_display_item].url);
+			newIcon.setAttribute("alt", clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+			
+			var newName = document.createElement("P");
+			var textNewName = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+			newName.classList.add("name");
+			newName.appendChild(textNewName);
+			
+			var newPrice = document.createElement("P");
+			var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price + ' pièces');
+			newPrice.classList.add("price-item");
+			newPrice.appendChild(textNewPrice);
+			
+			newItem.appendChild(newIcon);
+			newItem.appendChild(newName);
+			newItem.appendChild(newPrice);
+			
+			clicker.ressources.shop.appendChild(newItem);
 			clicker.global_var.next_display_item++;
 			updateLiFonction(clicker.global_var.next_display_item);
 		}
@@ -441,4 +450,3 @@ function buyEnergieItem(item){
 		}
 	}
 }
-
