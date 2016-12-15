@@ -546,7 +546,9 @@ function setSavedGame(){
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 	console.log(clicker.global_var.money_total);
 	for(var i = 0; i < clicker.global_var.ressources.length; i++){
+		console.log(clicker.global_var.ressources[i].price <= clicker.global_var.money_total);
 		if(clicker.global_var.ressources[i].price <= clicker.global_var.money_total) updateShop();
+		else if(clicker.global_var.next_display_item < 3) initialiseShop();
 		if(clicker.global_var.ressources[i].show == 1){
 			clicker.global_var.ressources[i].show = 1;
 			var newItem = document.createElement("LI");
