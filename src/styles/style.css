@@ -405,6 +405,22 @@ div.store
 
 *************************************/
 
+.levelUp{
+    position: absolute;
+    top: 22vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-family: 'Passion One', cursive;
+    color: white;
+    z-index: 101;
+    display: block;
+}
+
+.displayNone
+{
+    display: none;
+}
 
 .clicksCountingZone
 {
