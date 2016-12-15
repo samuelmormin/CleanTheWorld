@@ -582,6 +582,8 @@ p.price-item
     display: inline-block;
     margin-top: 20px;
     margin-left: 10px;
+    width: 100%;
+    overflow-y:scroll;
 }
 
 .inventory .inventoryTitle h2
@@ -592,6 +594,7 @@ p.price-item
     text-align: center;
     margin-bottom: 20px;
     width: 100%;
+    padding-right: 50px;
 }
 
 .inventory ul li
