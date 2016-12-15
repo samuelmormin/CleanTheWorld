@@ -288,8 +288,6 @@ function get_ressources(){
 	}, 1000);
 }
 
-//var sec_generator = setInterval(get_ressources, 1000);
-
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);

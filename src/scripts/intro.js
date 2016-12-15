@@ -13,46 +13,50 @@ var text_max_lenght = sitations.length;
 var current_text = 0;
 
 for (i=0; i < nb_car; i++) {
-  text[i] = txt+array[i];
-  var txt = text[i];
+	text[i] = txt+array[i];
+	var txt = text[i];
 }
 
 actual_text = 0;
 
 function changeMessage() {
-  introText.innerHTML = text[actual_text];
-  actual_text++;
-  if(actual_text >= text.length)
+	introText.innerHTML = text[actual_text];
+	actual_text++;
+	if(actual_text >= text.length)
 	{
 		actual_text = nb_msg;
 		clearInterval(afficheMessage);
-    if(current_text < sitations.length) textAnime();
+		if(current_text < sitations.length) {
+			setTimeout(function() {
+				requestAnimationFrame(textAnime);
+			}, 1000);
+		}
 	}
 }
 
 function randSitation(){
- chain = sitations[current_text];
- nb_car = chain.length;
- array = chain.split("");
- text = new Array;
- txt = '';
- nb_msg = nb_car - 1;
+	chain = sitations[current_text];
+	nb_car = chain.length;
+	array = chain.split("");
+	text = new Array;
+	txt = '';
+	nb_msg = nb_car - 1;
 
-for (i=0; i < nb_car; i++) {
-  text[i] = txt+array[i];
-   txt = text[i];
-}
+	for (i=0; i < nb_car; i++) {
+		text[i] = txt+array[i];
+		txt = text[i];
+	}
 
 
-actual_text = 0;
+	actual_text = 0;
 
 	afficheMessage = setInterval("changeMessage()",100);
 
 }
 
 function textAnime(){
-  randSitation();
-  current_text++;
+	randSitation();
+	current_text++;
 }
 
 textAnime();
