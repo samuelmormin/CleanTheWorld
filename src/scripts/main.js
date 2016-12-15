@@ -354,19 +354,15 @@ function buyDetritusTool(item){
 //item to have more detritus per sec
 function buyDetritusAids(item){
 	console.log("buy detritus per sec || " + item);
-//	clicker.ressources.detritus_auto_value = document.querySelector(".click-detritus-auto-value");
-//	console.log(clicker.ressources.detritus_auto_value);
-//	if(clicker.ressources.detritus_auto_value.value != "null"){
-//		var select_value = parseInt(clicker.ressources.detritus_auto_value.value);
-//		if(clicker.global_var.detritus_auto[select_value].price <= clicker.global_var.money){
-//			clicker.global_var.money -= clicker.global_var.detritus_auto[select_value].price;
-//			clicker.global_var.detritus_per_sec += clicker.global_var.detritus_auto[select_value].value;
-//			clicker.global_var.detritus_auto[select_value].available++;
-//			clicker.global_var.detritus_auto[select_value].price = parseFloat(clicker.global_var.detritus_auto[select_value].price * 1.2);
-//			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
-//			console.log(clicker.global_var.detritus_per_sec);
-//		}
-//	}
+		if(clicker.global_var.ressources[item].price <= clicker.global_var.money){
+			clicker.global_var.money -= clicker.global_var.ressources[item].price;
+			clicker.global_var.detritus_per_sec += clicker.global_var.ressources[item].value;
+			clicker.global_var.ressources[item].available++;
+			clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * 1.2);
+			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+			console.log(clicker.global_var.detritus_per_sec);
+			clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		}
 }
 
 //item to get energie
