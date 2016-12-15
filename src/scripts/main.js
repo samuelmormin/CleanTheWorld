@@ -265,8 +265,8 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/ecoarmyIcon.png",
 				show: 0},
 		];
+		initialiseShop();
 	}
-	initialiseShop();
 } 
 
 // incrementation of detritus
@@ -294,7 +294,7 @@ function get_ressources(){
 
 	clicker.global_var.purification_current += parseFloat(clicker.global_var.purify_per_sec/4);
 	purificationChecker();
-	
+
 	saveToLocal();
 
 	setTimeout(function() {
@@ -544,7 +544,35 @@ function setSavedGame(){
 	purificationChecker();
 	initialisePlanetImage();
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
-	initialiseShop();
+	console.log(clicker.global_var.money_total);
+	for(var i = 0; i < clicker.global_var.ressources.length; i++){
+		if(clicker.global_var.ressources[i].price <= clicker.global_var.money_total) updateShop();
+		if(clicker.global_var.ressources[i].show == 1){
+			clicker.global_var.ressources[i].show = 1;
+			var newItem = document.createElement("LI");
+			newItem.setAttribute("data-key", i);
+
+			var newIcon = document.createElement("IMG");
+			newIcon.setAttribute("src", clicker.global_var.ressources[i].url);
+			newIcon.setAttribute("alt", clicker.global_var.ressources[i].name);
+
+			var newDiv = document.createElement("DIV");
+			newDiv.classList.add("inventory_number");
+
+			var newDivNumber = document.createElement("P");
+			var number = document.createTextNode(clicker.global_var.ressources[i].available);
+			newDivNumber.classList.add("item_number");
+			newDivNumber.setAttribute("data-key", i);
+
+			newDivNumber.appendChild(number);
+			newDiv.appendChild(newDivNumber);
+
+			newItem.appendChild(newIcon);
+			newItem.appendChild(newDiv);
+
+			clicker.ressources.inventory.appendChild(newItem);
+		}
+	}
 }
 
 clicker.ressources.logo.addEventListener("click", function(){
