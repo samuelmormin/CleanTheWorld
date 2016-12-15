@@ -614,8 +614,9 @@ p.price-item
     margin-right: 10px;
 }
 
-::-webkit-scrollbar {
-display: none;
+::-webkit-scrollbar
+{
+    display: none;
 }
 
 .inventory ul li:nth-child(3n+1)
