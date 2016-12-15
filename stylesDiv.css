@@ -7,7 +7,7 @@ anecdote
 .anecdote{
     position: absolute;
     z-index: 5;
-    background: rgba(88, 174, 212, 0.7);
+    background: rgba(88, 174, 212, 0.5);
     width: 25%;
     height: auto;
     top: 0%;
