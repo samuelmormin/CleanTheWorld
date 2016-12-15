@@ -17,6 +17,7 @@ clicker.ressources.energie_total = document.querySelector(".incrementingEnergie"
 // clicker.ressources.detritus_auto = document.querySelector(".ditritus-auto");
 // clicker.ressources.detritus_auto_value = document.querySelector(".click-detritus-auto-value");
 clicker.ressources.shop = document.querySelector('.clicker_shop_block ul');
+clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li');
 
 //Global variables
 clicker.global_var.current_level = 1; // start level
@@ -212,7 +213,6 @@ clicker.global_var.ressources = [
 		type: "detritus auto"},
 ];
 
-console.log(clicker.global_var.ressources.length);
 
 // incrementation of detritus
 clicker.ressources.planet_current.addEventListener("click", function(){
@@ -232,7 +232,7 @@ function get_ressources(){
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 
 	clicker.global_var.detritus = parseFloat(clicker.global_var.detritus + clicker.global_var.detritus_per_sec);
-	add_money(clicker.global_var.detritus, "detritus");
+	add_money(clicker.global_var.detritus_per_sec, "detritus");
 	clicker.global_var.purification_current = clicker.global_var.purification_current + parseFloat(clicker.global_var.detritus_per_sec/2);//10 detritus for 1 purification
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
 
@@ -245,7 +245,7 @@ function get_ressources(){
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
-		console.log(clicker.global_var.money);
+		//		console.log(clicker.global_var.money);
 		updateShop();
 	} else if(type == "energie"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/5);
@@ -270,6 +270,15 @@ function purificationChecker(){
 		clicker.ressources.gauge.style = "transform: scaleX(0)";
 		initialisePlanetImage();
 	}
+}
+
+function updateLiFonction(){
+	clicker.ressources.shop_items = document.querySelectorAll('.clicker_shop_block ul li');
+	for(var i = 0; i < clicker.ressources.shop_items.length; i++){
+		clicker.ressources.shop_items[i].addEventListener("click", updateItemShop);
+	}
+
+	//	console.log(clicker.ressources.shop_items[clicker.global_var.next_display_item-1].getAttribute("data-key"));
 }
 
 function planetImagesChange(){
@@ -312,8 +321,70 @@ function updateShop(){
 					' pièces</p></li>';
 			clicker.ressources.shop.innerHTML += newItem;
 			clicker.global_var.next_display_item++;
+			updateLiFonction();
 		}
 	}
 }
 
-//clicker.ressources.shop.addEventListener("click", updateShop);
+
+function updateItemShop(){
+	var thisItem = this.getAttribute("data-key");
+	console.log(thisItem);
+}
+
+
+
+//SHOP ITEM
+
+//buy tool to get more detritus per click
+function buyDetritusTool(){
+	clicker.ressources.detritus_click = document.querySelector(".click-detritus-value");
+	if(clicker.ressources.detritus_click.value != "null"){
+		var select_value = parseInt(clicker.ressources.detritus_click.value);
+		if(clicker.global_var.click_aids[select_value].price <= clicker.global_var.money){
+			clicker.global_var.money -= clicker.global_var.click_aids[select_value].price;
+			clicker.global_var.click_aids[select_value].level++;
+			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+			clicker.global_var.click_aids[select_value].price = parseFloat(clicker.global_var.click_aids[select_value].price * 1.2);
+			clicker.global_var.detritus_click_result += clicker.global_var.click_aids[select_value].value; 
+			console.log(clicker.global_var.click_aids[select_value].name + " : " + clicker.global_var.click_aids[select_value].level + " : " + clicker.global_var.click_aids[select_value].price + " pièce");
+		}
+	}
+}
+
+//item to have more detritus per sec
+function buyDetritusAids(){
+	clicker.ressources.detritus_auto_value = document.querySelector(".click-detritus-auto-value");
+	console.log(clicker.ressources.detritus_auto_value);
+	if(clicker.ressources.detritus_auto_value.value != "null"){
+		var select_value = parseInt(clicker.ressources.detritus_auto_value.value);
+		if(clicker.global_var.detritus_auto[select_value].price <= clicker.global_var.money){
+			clicker.global_var.money -= clicker.global_var.detritus_auto[select_value].price;
+			clicker.global_var.detritus_per_sec += clicker.global_var.detritus_auto[select_value].value;
+			clicker.global_var.detritus_auto[select_value].available++;
+			clicker.global_var.detritus_auto[select_value].price = parseFloat(clicker.global_var.detritus_auto[select_value].price * 1.2);
+			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+			console.log(clicker.global_var.detritus_per_sec);
+		}
+	}
+}
+/*
+	Add energie
+*/
+//if energie tool's price is less than the amount of money we possess we can buy this tool
+function buyEnergieItem(){
+	clicker.ressources.energie_click = document.querySelector(".click-energie-value");
+	if(clicker.ressources.energie_click.value != "null"){
+		var select_value = parseInt(clicker.ressources.energie_click.value);
+		if(clicker.global_var.energie_tool[select_value].price <= clicker.global_var.money){ 
+			clicker.global_var.money -= clicker.global_var.energie_tool[select_value].price;
+			clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+			clicker.global_var.energie_per_sec = parseFloat(clicker.global_var.energie_per_sec + clicker.global_var.energie_tool[select_value].value_energie/40);
+			clicker.global_var.purify_per_sec = parseFloat(clicker.global_var.purify_per_sec + clicker.global_var.energie_tool[select_value].value_purification/20);
+			clicker.global_var.energie_tool[select_value].available++;
+			clicker.global_var.energie_tool[select_value].price = parseFloat(clicker.global_var.energie_tool[select_value].price * 1.2);
+			console.log(clicker.global_var.energie_tool[select_value].name + " : " + clicker.global_var.energie_tool[select_value].available + " : " + clicker.global_var.energie_tool[select_value].price + " pièce");
+		}
+	}
+}
+
