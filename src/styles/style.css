@@ -270,7 +270,7 @@ div.planet img
 {
     display: inline-block;
     position: absolute;
-    left: 20px;
+    left: 95px;
     margin-top: 20px;
     font-size: 24px;
     color: #79ae37;
@@ -281,6 +281,7 @@ div.planet img
 {
     display: inline-block;
     vertical-align: middle;
+    margin-left: 25px;
     margin-top: 25px;
     font-size: 16px;
     color: #79ae37;
@@ -444,8 +445,8 @@ div.store
 
 .counter
 {
-    font-size: 30px;
-    width: 100px;
+    font-size: 50px;
+    width: 150px;
     color: white;
     font-family: 'Passion One', cursive;
     margin: 0 auto;
@@ -596,8 +597,16 @@ div.store
 p.price-item
 {
     position: absolute;
-    right: 10%;
+    margin:3px;
+    padding:3 px;
+    right: 3px;
+    top: 3px;
+    bottom: 3px;
+    background-color: red;
+    border-radius: 20px;
 }
+
+
 
 .rightMenu ul
 {
