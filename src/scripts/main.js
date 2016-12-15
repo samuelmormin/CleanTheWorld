@@ -22,7 +22,7 @@ clicker.global_var.coefficient_purification = 1.2; // coefficient of purificatio
 clicker.global_var.current_image = 5; //current planet state
 clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 clicker.global_var.detritus = 0; //number of detritus collected
-clicker.global_var.detritus_click_result = 10; //number of detritus collected per click
+clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
 clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
 clicker.global_var.money = 0; //Indicator of your money
 clicker.global_var.money_total = 0 //total money collected
@@ -478,4 +478,8 @@ function buyEnergieItem(item){
 			updateInventory(item);
 		}
 	}
+}
+
+function initialiseShop(){
+	
 }

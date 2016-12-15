@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <title>Clean the world</title>
+
+    <link rel="stylesheet" href="src/styles/initialiser.css" />
+    <link rel="stylesheet" href="src/styles/style.css">
+    
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="src/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="src/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="src/img/favicons/manifest.json">
+    <link rel="mask-icon" href="src/img/favicons/safari-pinned-tab.svg" color="#6eb5c6">
+    <meta name="theme-color" content="#b2d8e1">
+    <!--fin favicon -->
+    
+    <link rel="stylesheet" href="stylesDiv.css">
+    <link href="https://fonts.googleapis.com/css?family=Passion+One:400,700" rel="stylesheet">
+</head>
+
+<body>
+    <div class="mouseClickEffect"></div>
+    <div class="container">
+        <div class="background">
+            <div class='stars'></div>
+            <div class='stars2'></div>
+            <div class='stars3'></div>
+        </div>
+        <!-- Header -->
+        <div class="header">
+            <h1 class="logo">Clean The World</h1>
+            <p class="planetName">PLANÈTE TERRE</p>
+        </div>
+
+        <!-- Store -->
+        <div class="store">
+            <section class="clicker_shop left">
+                <div class="clicker_shop_title">
+                    <h2>BOUTIQUE</h2>
+                </div>
+                <div class="clicker_shop_block">
+                    <ul>
+
+                    </ul>
+                </div>
+            </section>
+        </div>
+        
+        <!-- anecdote -->
+        <div class="anecdote">
+            <p>Chaque seconde, plus de 9 kilos de déchets sont éliminés par les rats dans les égouts de Paris, soit 800 tonnes par jour et 292 000 tonnes de déchets "nettoyés" par an.</p>
+        </div>
+        
+        <!-- MiddleClikZone -->
+        <div class="levelUp displayNone"><p>LEVEL UP ! Clean the next planet !</p></div>
+        <div class="clicksCountingZone">
+            <div class="counter">0</div>
+            <p class="counterDescription">DÉCHETS RÉCOLTÉS</p>
+            <!-- Planet -->
+            <div class="planet">
+                <div><img src="src/img/planet1_1.png" alt="" class="earth0"></div>
+                <div><img src="src/img/planet1_2.png" alt="" class="earth1"></div>
+                <div><img src="src/img/planet1_3.png" alt="" class="earth2"></div>
+                <div><img src="src/img/planet1_4.png" alt="" class="earth3"></div>
+                <div><img src="src/img/planet1_5.png" alt="" class="earth4"></div>
+                <div><img src="src/img/planet1_6.png" alt="" class="earth5"></div>
+            </div>
+            <div class="moon"></div>
+            <!--
+            <div class="arrows">
+                <img src="src/img/right-arrow.png" alt="arrowright" class="arrowright">
+                <img src="src/img/left-arrow.png" alt="arrowleft" class="arrowleft">
+            </div>
+            -->
+            <!-- purity Indice -->
+            <div class="purityIndice">
+                <p>INDICE DE PURETÉ</p>
+                <div class="ratio1">
+                    <div class="ratio2"></div>
+                </div>
+                <div class="percentage">0%</div>
+                <img src="src/img/purityleaf.png" alt="PetiteFeuilleMignonne" class="imgleaf">
+            </div>
+        </div>
+        <div class="rightMenu">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img class="iconStore" src="src/img/coinIcon.png" alt="">
+                        <p class="incrementingCoin">0</p>
+                        <p class="incrementingText">Pièces gagnées</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img class="iconStore" src="src/img/energyIcon.png" alt="">
+                        <p class="incrementingEnergie">0</p>
+                        <p class="incrementingText">Énergies générées</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="inventory">
+                <div class="inventoryTitle">
+                    <h2>INVENTAIRE</h2>
+                </div>
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+        <script src="src/scripts/fastclick.js"></script>
+        <script type="text/javascript" src="src/scripts/main.js"></script>
+        <script src="ajoutDiv.js"></script>
+        <script src="src/scripts/script.js"></script>
+</body>
+
+</html>
