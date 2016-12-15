@@ -18,7 +18,7 @@ clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li
 //Global variables
 clicker.global_var.current_level = 1; // start level
 clicker.global_var.coeficient_price = 2; // coefficient for price
-clicker.global_var.coefficient_purification = 1.2; // coefficient of purification for each level
+clicker.global_var.coefficient_purification = 4; // coefficient of purification for each level
 clicker.global_var.current_image = 5; //current planet state
 clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 clicker.global_var.detritus = 0; //number of detritus collected
@@ -481,5 +481,33 @@ function buyEnergieItem(item){
 }
 
 function initialiseShop(){
-	
+	for(i = 0; i < 3; i++){
+		var newItem = document.createElement("LI");
+		newItem.setAttribute("data-key", clicker.global_var.next_display_item);
+
+		var newIcon = document.createElement("IMG");
+		newIcon.setAttribute("src", clicker.global_var.ressources[clicker.global_var.next_display_item].url);
+		newIcon.setAttribute("alt", clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+
+		var newName = document.createElement("P");
+		var textNewName = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+		newName.classList.add("name");
+		newName.appendChild(textNewName);
+
+		var newPrice = document.createElement("P");
+		var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price + ' pièces');
+		newPrice.classList.add("price-item");
+		newPrice.appendChild(textNewPrice);
+
+		newItem.appendChild(newIcon);
+		newItem.appendChild(newName);
+		newItem.appendChild(newPrice);
+
+		clicker.ressources.shop.appendChild(newItem);
+		clicker.global_var.next_display_item++;
+		updateLiFonction(clicker.global_var.next_display_item);
+	}
+
 }
+
+initialiseShop();
