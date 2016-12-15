@@ -30,7 +30,7 @@ body.addEventListener('mousemove', function(event)
 
 planetEarth.addEventListener('click', function()
 {
-    mouseDiv.innerHTML = "<p>+1</p>";
+    mouseDiv.innerHTML = "<p>+ " + clicker.global_var.detritus_click_result + "</p>";
     mouseDiv.firstChild.style.animation = "plusOneAnim 0.6s ease";
 });
 

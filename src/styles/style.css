@@ -188,7 +188,6 @@ div.planet img
     left: 50%;
     transform: translateX(-50%);
     transition: opacity 3s;
-    opacity: 1;
     will-change: opacity;
 }
 
@@ -297,7 +296,8 @@ div.planet img
 {
     display: inline-block;
     width: 20%;
-    height: 400px;
+    height: 200px;
+    overflow-y:scroll;
 }
 
 
@@ -382,6 +382,12 @@ ul li p
     right: -14px;
     top: 0;
 }
+
+div.store
+{
+    height: 600px;
+}
+
 .clicker_shop_block ul li:hover .buttonDescription
 {
     display: block;
@@ -390,6 +396,8 @@ ul li p
 {
     display: block;
 }
+
+
 
 /*************************************
 
@@ -561,11 +569,6 @@ p.price-item
     right: 10%;
 }
 
-.clicker_shop_block
-{
-    width: 100%;
-    overflow-y:scroll;
-}
 
 
 .rightMenu ul
