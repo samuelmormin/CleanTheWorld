@@ -19,7 +19,7 @@ anecdote
 }
 
 .anecdoteAnim{
-    animation: pop-up-anecdote 4s 2 cubic-bezier(0, 0.45, 0.49, 1.02) alternate;
+    animation: pop-up-anecdote 5s 2 cubic-bezier(0, 0.45, 0.49, 1.02) alternate;
 }
 
 @keyframes pop-up-anecdote{

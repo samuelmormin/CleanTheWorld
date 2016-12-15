@@ -37,7 +37,7 @@ clicker.global_var.anecdotes = [
 	},
 	{
 		number: 8,
-		text: "La perte de terres arables du fait de la salinisation des sols dans le monde représente 500 m2 par seconde souvent de manière irrémédiable.",
+		text: "La perte de terres arables dû à la salinisation des sols dans le monde représente 500 m2 par seconde. Cette perte est souvent irrémédiable.",
 	},
 	{
 		number: 9,
@@ -84,9 +84,9 @@ function showAnecdotes(){
 	};
 	setTimeout(function() {
 		requestAnimationFrame(showAnecdotes);
-	}, 8000);
+	}, 10000);
 }
 
 setTimeout(function() {
 		requestAnimationFrame(showAnecdotes);
-	}, 8000);
+	}, 10000);
