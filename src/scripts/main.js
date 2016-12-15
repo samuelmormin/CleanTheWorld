@@ -392,9 +392,29 @@ function updateShop(){
 			newPrice.classList.add("price-item");
 			newPrice.appendChild(textNewPrice);
 
+			var newBouttonDescrip = document.createElement("DIV");
+
+			if(clicker.global_var.ressources[thisItem].typeItem == "click aids") {
+				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value+ " déchets par clic.");
+			}
+			else if(clicker.global_var.ressources[thisItem].typeItem == "detritus auto") {
+				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value + " déchets par seconde.");
+			}
+			else {
+				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value_energie + " énergei et "+																							clicker.global_var.ressources[thisItem].value_purification + " purification par seconde.");
+			}
+
+			newBouttonDescrip.classList.add("buttonDescription");
+
+			var newBouttonDirection = document.createElement("DIV");
+			var newBouttonDirectionImage = document.createElement("IMG");
+			newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+
 			newItem.appendChild(newIcon);
 			newItem.appendChild(newName);
 			newItem.appendChild(newPrice);
+			newItem.appendChild(newBouttonDescrip);
+			newItem.appendChild(newBouttonDirection);
 
 			clicker.ressources.shop.appendChild(newItem);
 			clicker.global_var.next_display_item++;
@@ -518,9 +538,29 @@ function initialiseShop(){
 		newPrice.classList.add("price-item");
 		newPrice.appendChild(textNewPrice);
 
+		var newBouttonDescrip = document.createElement("DIV");
+
+		if(clicker.global_var.ressources[thisItem].typeItem == "click aids") {
+			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value+ " déchets par clic.");
+		}
+		else if(clicker.global_var.ressources[thisItem].typeItem == "detritus auto") {
+			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value+ " déchets par seconde.");
+		}
+		else {
+			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value_energie + " énergei et "+																							clicker.global_var.ressources[thisItem].value_purification + " purification par seconde.");
+		}
+
+		newBouttonDescrip.classList.add("buttonDescription");
+
+		var newBouttonDirection = document.createElement("DIV");
+		var newBouttonDirectionImage = document.createElement("IMG");
+		newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+
 		newItem.appendChild(newIcon);
 		newItem.appendChild(newName);
 		newItem.appendChild(newPrice);
+		newItem.appendChild(newBouttonDescrip);
+		newItem.appendChild(newBouttonDirection);
 
 		clicker.ressources.shop.appendChild(newItem);
 		clicker.global_var.next_display_item++;
@@ -536,7 +576,6 @@ function saveToLocal(){
 }
 
 function setSavedGame(){
-	clicker.global_var.next_display_item = 0; //item to display in the shop
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 	clicker.ressources.energie_total.innerHTML = parseInt(clicker.global_var.energie_total);
@@ -545,10 +584,51 @@ function setSavedGame(){
 	initialisePlanetImage();
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 	console.log(clicker.global_var.money_total);
-	for(var i = 0; i < clicker.global_var.ressources.length; i++){
+	for(var i = 0; i < clicker.global_var.next_display_item ; i++){
 		console.log(clicker.global_var.ressources[i].price <= clicker.global_var.money_total);
-		if(clicker.global_var.ressources[i].price <= clicker.global_var.money_total) updateShop();
-		else if(clicker.global_var.next_display_item < 3) initialiseShop();
+		var newItem = document.createElement("LI");
+		newItem.setAttribute("data-key", clicker.global_var.next_display_item);
+
+		var newIcon = document.createElement("IMG");
+		newIcon.setAttribute("src", clicker.global_var.ressources[i].url);
+		newIcon.setAttribute("alt", clicker.global_var.ressources[i].name);
+
+		var newName = document.createElement("P");
+		var textNewName = document.createTextNode(clicker.global_var.ressources[i].name);
+		newName.classList.add("name");
+		newName.appendChild(textNewName);
+
+		var newPrice = document.createElement("P");
+		var textNewPrice = document.createTextNode(clicker.global_var.ressources[i].price + ' pièces');
+		newPrice.classList.add("price-item");
+		newPrice.appendChild(textNewPrice);
+
+		var newBouttonDescrip = document.createElement("DIV");
+
+		if(clicker.global_var.ressources[i].typeItem == "click aids") {
+			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par clic.");
+		}
+		else if(clicker.global_var.ressources[i].typeItem == "detritus auto") {
+			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
+		}
+		else {
+			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
+		}
+
+		newBouttonDescrip.classList.add("buttonDescription");
+
+		var newBouttonDirection = document.createElement("DIV");
+		var newBouttonDirectionImage = document.createElement("IMG");
+		newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+
+		newItem.appendChild(newIcon);
+		newItem.appendChild(newName);
+		newItem.appendChild(newPrice);
+		newItem.appendChild(newBouttonDescrip);
+		newItem.appendChild(newBouttonDirection);
+
+		clicker.ressources.shop.appendChild(newItem);
+
 		if(clicker.global_var.ressources[i].show == 1){
 			clicker.global_var.ressources[i].show = 1;
 			var newItem = document.createElement("LI");
@@ -581,3 +661,19 @@ clicker.ressources.logo.addEventListener("click", function(){
 	localStorage.removeItem("clicker_ressources");
 	location.reload();
 });
+
+
+var newBouttonDescrip = document.createElement("DIV");
+var newBouttonDescripText = document.createTextNode("Récolte 3 déchets par clic.");
+newBouttonDescrip.classList.add("buttonDescription");
+
+var newBouttonDirection = document.createElement("DIV");
+var newBouttonDirectionImage = document.createElement("IMG");
+newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+
+//<div class="buttonDescription">
+//	<p>Récolte 3 déchets par clic.</p>
+//		</div>
+//		<div class="descriptionDirection">
+//			<img src="src/img/descriptionDirection.png" alt="">
+//				</div>

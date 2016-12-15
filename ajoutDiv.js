@@ -75,7 +75,7 @@ clicker.global_var.anecdotes = [
 ];
 
 function showAnecdotes(){
-	var anecdotes_number = Math.floor(Math.random()*clicker.global_var.anecdotes.length);
+	var anecdotes_number = Math.floor(Math.random()*(clicker.global_var.anecdotes.length-1));
 	anecdotes_p.innerHTML =  clicker.global_var.anecdotes[anecdotes_number].text;
 	if(anecdote.classList.contains('anecdoteAnim')){
 		anecdote.classList.remove('anecdoteAnim');
