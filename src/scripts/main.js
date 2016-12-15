@@ -77,7 +77,7 @@ clicker.global_var.ressources = [
 		price: 65,
 		available: 0,
 		typeItem: "click aids",
-		url: "src/img/",
+		url: "src/img/pawIcon.png",
 		show: 0},
 	{
 		name: "buisson",
@@ -161,7 +161,7 @@ clicker.global_var.ressources = [
 		price: 780,
 		available: 0,
 		typeItem: "energie tools",
-		url: "src/img/",
+		url: "src/img/solarpanelIcon.png",
 		show: 0},
 	{
 		name: "hevea", //dfjffdfffffffffffffffffff
@@ -170,7 +170,7 @@ clicker.global_var.ressources = [
 		price: 900,
 		available: 0,
 		typeItem: "energie tools",
-		url: "src/img/",
+		url: "src/img/heveaIcon.png",
 		show: 0},
 	{
 		name: "pelleteuse",
@@ -195,7 +195,7 @@ clicker.global_var.ressources = [
 		price: 1300,
 		available: 0,
 		typeItem: "energie tools",
-		url: "",
+		url: "src/img/powerstationIcon.png",
 		show: 0},
 	{
 		name: "arbre alienne",
@@ -212,7 +212,7 @@ clicker.global_var.ressources = [
 		price: 2200,
 		available: 0,
 		typeItem: "detritus auto",
-		url: "",
+		url: "src/img/alienIcon.png",
 		show: 0},
 	{
 		name: "méga centrale",
@@ -237,7 +237,7 @@ clicker.global_var.ressources = [
 		price: 3500,
 		available: 0,
 		typeItem: "detritus auto",
-		url: "",
+		url: "src/img/flagIcon.png",
 		show: 0},
 	{
 		name: "T 282B",//dfjffdfffffffffffffffffff
@@ -245,7 +245,7 @@ clicker.global_var.ressources = [
 		price: 7600,
 		available: 0,
 		typeItem: "click aids",
-		url: "",
+		url: "src/img/t282bIcon.png",
 		show: 0},
 	{
 		name: "l'armée des écolos intergalactic",
@@ -253,7 +253,7 @@ clicker.global_var.ressources = [
 		price: 10000,
 		available: 0,
 		typeItem: "detritus auto",
-		url: "",
+		url: "src/img/ecoarmyIcon.png",
 		show: 0},
 ];
 
@@ -411,6 +411,7 @@ function updateInventory(thisItem){
 		
 		var newDivNumber = document.createElement("P");
 		var number = document.createTextNode(clicker.global_var.ressources[thisItem].available);
+		newDivNumber.classList.add("item_number");
 		
 		newDivNumber.appendChild(number);
 		newDiv.appendChild(newDivNumber);
@@ -421,8 +422,8 @@ function updateInventory(thisItem){
 		clicker.ressources.inventory.appendChild(newItem);
 		
 	} else{
-		clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li");
-		console.log(clicker.ressources.inventory_items[thisItem]);
+		clicker.ressources.inventory_items = document.querySelectorAll(".item_number");
+		clicker.ressources.inventory_items[thisItem].innerHTML = clicker.global_var.ressources[thisItem].available;
 	}
 }
 
