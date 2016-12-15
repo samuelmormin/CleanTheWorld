@@ -1,6 +1,5 @@
 var clicker = {};
 clicker.ressources = {};
-clicker.global_var = {};
 
 //Ressources
 clicker.ressources.planet_current = document.querySelector(".planet"); // planet
@@ -8,255 +7,267 @@ clicker.ressources.planet_images = document.querySelectorAll(".planet div");
 clicker.ressources.detritus_result = document.querySelector(".counter"); // counter of detritus
 clicker.ressources.money = document.querySelector(".incrementingCoin"); //counter of money
 clicker.ressources.gauge = document.querySelector(".ratio2"); //gauge of purification
-clicker.ressources.gauge_pourcent = document.querySelector(".percentage"); //current percentage
+clicker.ressources.gauge_percent = document.querySelector(".percentage"); //current percentage
 clicker.ressources.energie_total = document.querySelector(".incrementingEnergie"); // counter of energie
 clicker.ressources.shop = document.querySelector('.clicker_shop_block ul'); //shop element
 clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li'); //shop's items elements
 clicker.ressources.inventory = document.querySelector(".inventory ul"); //inventory element
 clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li"); //inventory items elements
+clicker.ressources.logo = document.querySelector(".header");
 
-//Global variables
-clicker.global_var.current_level = 1; // start level
-clicker.global_var.coeficient_price = 2; // coefficient for price
-clicker.global_var.coefficient_purification = 4; // coefficient of purification for each level
-clicker.global_var.current_image = 5; //current planet state
-clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
-clicker.global_var.detritus = 0; //number of detritus collected
-clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
-clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
-clicker.global_var.money = 0; //Indicator of your money
-clicker.global_var.money_total = 0 //total money collected
-clicker.global_var.purification = 500; // purification level 1
-clicker.global_var.purification_current = 0; //our purification currently
-clicker.global_var.purification_current_percentage = 0
-//clicker.global_var.energie = clicker.ressources.energie_click.value;
-clicker.global_var.energie_total = 0; //number of energie total
-clicker.global_var.energie_per_sec = 0; //energie per second
-clicker.global_var.purify_per_sec = 0; //purification per second
-clicker.global_var.detritus_per_sec = 0; //detritus per second
-clicker.global_var.next_display_item = 0; //item to display in the shop
-clicker.global_var.ressources = [
-	{ 
-		name: "gants",
-		value: 2,
-		price: 5,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/gloveIcon.png",
-		show: 0},
-	{
-		name: "bonzaï",
-		value_purification: 30,
-		value_energie: 2.5,
-		price: 10,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/bonzaiIcon.png",
-		show: 0},
-	{
-		name: "arbuste",
-		value_purification: 50,
-		value_energie: 5,
-		price: 20,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/littletreeIcon.png",
-		show: 0},
-	{
-		name: "eolienne",
-		value_purification: 10,
-		value_energie: 80,
-		price: 60,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/windturbineIcon.png",
-		show: 0},
-	{
-		name: "pince",//dfjffdfffffffffffffffffff
-		value: 5,
-		price: 65,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/pawIcon.png",
-		show: 0},
-	{
-		name: "buisson",
-		value_purification: 70,
-		value_energie: 10,
-		price: 80,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/shrubIcon.png",
-		show: 0},
-	{
-		name: "bénévole écolo",
-		value: 5,
-		price: 100,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/volunteerIcon.png",
-		show: 0},
-	{
-		name: "arbre fruitier",
-		value_purification: 100,
-		value_energie: 20,
-		price: 200,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/fruittreeIcon.png",
-		show: 0},
-	{
-		name: "ouvrier",
-		value: 10,
-		price: 210,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/workerIcon.png",
-		show: 0},
-	{
-		name: "barrage",
-		value_purification: 20,
-		value_energie: 100,
-		price: 250,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/hydraulicbamIcon.png",
-		show: 0},
-	{
-		name: "pelle",
-		value: 30,
-		price: 320,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/spadeIcon.png",
-		show: 0},
-	{
-		name: "ouvrier spécialisé",
-		value: 25,
-		price: 430,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/specialworkerIcon.png",
-		show: 0},
-	{
-		name: "brouette",
-		value: 40,
-		price: 470,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/wheelbarrowIcon.png",
-		show: 0},
-	{
-		name: "walee",
-		value: 60,
-		price: 700,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/walleIcon.png",
-		show: 0},
-	{
-		name: "panneau solaire",//dfjffdfffffffffffffffffff
-		value_purification: 30,
-		value_energie: 160,
-		price: 780,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/solarpanelIcon.png",
-		show: 0},
-	{
-		name: "hevea", //dfjffdfffffffffffffffffff
-		value_purification: 300,
-		value_energie: 40,
-		price: 900,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/heveaIcon.png",
-		show: 0},
-	{
-		name: "pelleteuse",
-		value: 100,
-		price: 1000,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/diggerIcon.png",
-		show: 0},
-	{
-		name: "super robot",
-		value: 100,
-		price: 1200,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/superrobotIcon.png",
-		show: 0},
-	{
-		name: "centrale à fusion",//dfjffdfffffffffffffffffff
-		value_purification: 40,
-		value_energie: 320,
-		price: 1300,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/powerstationIcon.png",
-		show: 0},
-	{
-		name: "arbre alienne",
-		value_purification: 700,
-		value_energie: 60,
-		price: 2100,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/alientree.png",
-		show: 0},
-	{
-		name: "régiment alienne",//dfjffdfffffffffffffffffff
-		value: 200,
-		price: 2200,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/alienIcon.png",
-		show: 0},
-	{
-		name: "méga centrale",
-		value_purification: 50,
-		value_energie: 780,
-		price: 2500,
-		available: 0,
-		typeItem: "energie tools",
-		url: "src/img/megacentralIcon.png",
-		show: 0},
-	{
-		name: "camion benne",
-		value: 500,
-		price: 3000,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/truckIcon.png",
-		show: 0},
-	{ 																															
-		name: "bataillon intergalactic", //dfjffdfffffffffffffffffff
-		value: 500,
-		price: 3500,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/flagIcon.png",
-		show: 0},
-	{
-		name: "T 282B",//dfjffdfffffffffffffffffff
-		value: 1000,
-		price: 7600,
-		available: 0,
-		typeItem: "click aids",
-		url: "src/img/t282bIcon.png",
-		show: 0},
-	{
-		name: "l'armée des écolos intergalactic",
-		value: 1000,
-		price: 10000,
-		available: 0,
-		typeItem: "detritus auto",
-		url: "src/img/ecoarmyIcon.png",
-		show: 0},
-];
+if(typeof(Storage) !== "undefined") {
+	if (localStorage.clicker_ressources) {
 
+		clicker.global_var = JSON.parse(localStorage.clicker_ressources);
+		setSavedGame();
+
+	} else {
+		clicker.global_var = {};
+
+		//Global variables
+		clicker.global_var.current_level = 1; // start level
+		clicker.global_var.coeficient_price = 2; // coefficient for price
+		clicker.global_var.coefficient_purification = 4; // coefficient of purification for each level
+		clicker.global_var.current_image = 5; //current planet state
+		clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
+		clicker.global_var.detritus = 0; //number of detritus collected
+		clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
+		clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
+		clicker.global_var.money = 0; //Indicator of your money
+		clicker.global_var.money_total = 0 //total money collected
+		clicker.global_var.purification = 500; // purification level 1
+		clicker.global_var.purification_current = 0; //our purification currently
+		clicker.global_var.purification_current_percentage = 0
+		//clicker.global_var.energie = clicker.ressources.energie_click.value;
+		clicker.global_var.energie_total = 0; //number of energie total
+		clicker.global_var.energie_per_sec = 0; //energie per second
+		clicker.global_var.purify_per_sec = 0; //purification per second
+		clicker.global_var.detritus_per_sec = 0; //detritus per second
+		clicker.global_var.next_display_item = 0; //item to display in the shop
+		clicker.global_var.ressources = [
+			{ 
+				name: "gants",
+				value: 2,
+				price: 5,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/gloveIcon.png",
+				show: 0},
+			{
+				name: "bonzaï",
+				value_purification: 30,
+				value_energie: 2.5,
+				price: 10,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/bonzaiIcon.png",
+				show: 0},
+			{
+				name: "arbuste",
+				value_purification: 50,
+				value_energie: 5,
+				price: 20,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/littletreeIcon.png",
+				show: 0},
+			{
+				name: "eolienne",
+				value_purification: 10,
+				value_energie: 80,
+				price: 60,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/windturbineIcon.png",
+				show: 0},
+			{
+				name: "pince",//dfjffdfffffffffffffffffff
+				value: 5,
+				price: 65,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/pawIcon.png",
+				show: 0},
+			{
+				name: "buisson",
+				value_purification: 70,
+				value_energie: 10,
+				price: 80,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/shrubIcon.png",
+				show: 0},
+			{
+				name: "bénévole écolo",
+				value: 5,
+				price: 100,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/volunteerIcon.png",
+				show: 0},
+			{
+				name: "arbre fruitier",
+				value_purification: 100,
+				value_energie: 20,
+				price: 200,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/fruittreeIcon.png",
+				show: 0},
+			{
+				name: "ouvrier",
+				value: 10,
+				price: 210,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/workerIcon.png",
+				show: 0},
+			{
+				name: "barrage",
+				value_purification: 20,
+				value_energie: 100,
+				price: 250,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/hydraulicbamIcon.png",
+				show: 0},
+			{
+				name: "pelle",
+				value: 30,
+				price: 320,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/spadeIcon.png",
+				show: 0},
+			{
+				name: "ouvrier spécialisé",
+				value: 25,
+				price: 430,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/specialworkerIcon.png",
+				show: 0},
+			{
+				name: "brouette",
+				value: 40,
+				price: 470,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/wheelbarrowIcon.png",
+				show: 0},
+			{
+				name: "walee",
+				value: 60,
+				price: 700,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/walleIcon.png",
+				show: 0},
+			{
+				name: "panneau solaire",//dfjffdfffffffffffffffffff
+				value_purification: 30,
+				value_energie: 160,
+				price: 780,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/solarpanelIcon.png",
+				show: 0},
+			{
+				name: "hevea", //dfjffdfffffffffffffffffff
+				value_purification: 300,
+				value_energie: 40,
+				price: 900,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/heveaIcon.png",
+				show: 0},
+			{
+				name: "pelleteuse",
+				value: 100,
+				price: 1000,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/diggerIcon.png",
+				show: 0},
+			{
+				name: "super robot",
+				value: 100,
+				price: 1200,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/superrobotIcon.png",
+				show: 0},
+			{
+				name: "centrale à fusion",//dfjffdfffffffffffffffffff
+				value_purification: 40,
+				value_energie: 320,
+				price: 1300,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/powerstationIcon.png",
+				show: 0},
+			{
+				name: "arbre alienne",
+				value_purification: 700,
+				value_energie: 60,
+				price: 2100,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/alientree.png",
+				show: 0},
+			{
+				name: "régiment alienne",//dfjffdfffffffffffffffffff
+				value: 200,
+				price: 2200,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/alienIcon.png",
+				show: 0},
+			{
+				name: "méga centrale",
+				value_purification: 50,
+				value_energie: 780,
+				price: 2500,
+				available: 0,
+				typeItem: "energie tools",
+				url: "src/img/megacentralIcon.png",
+				show: 0},
+			{
+				name: "camion benne",
+				value: 500,
+				price: 3000,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/truckIcon.png",
+				show: 0},
+			{ 																															
+				name: "bataillon intergalactic", //dfjffdfffffffffffffffffff
+				value: 500,
+				price: 3500,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/flagIcon.png",
+				show: 0},
+			{
+				name: "T 282B",//dfjffdfffffffffffffffffff
+				value: 1000,
+				price: 7600,
+				available: 0,
+				typeItem: "click aids",
+				url: "src/img/t282bIcon.png",
+				show: 0},
+			{
+				name: "l'armée des écolos intergalactic",
+				value: 1000,
+				price: 10000,
+				available: 0,
+				typeItem: "detritus auto",
+				url: "src/img/ecoarmyIcon.png",
+				show: 0},
+		];
+	}
+	initialiseShop();
+} 
 
 // incrementation of detritus
 clicker.ressources.planet_current.addEventListener("click", function(){
@@ -266,12 +277,13 @@ clicker.ressources.planet_current.addEventListener("click", function(){
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 	purificationChecker();
+	saveToLocal();
 });
 
 /*generate ressources per second*/
 function get_ressources(){
 	clicker.global_var.energie_total += clicker.global_var.energie_per_sec;
-	clicker.ressources.energie_total.innerHTML = clicker.global_var.energie_total;
+	clicker.ressources.energie_total.innerHTML = parseInt(clicker.global_var.energie_total);
 	add_money(clicker.global_var.energie_per_sec, "energie")
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 
@@ -282,6 +294,8 @@ function get_ressources(){
 
 	clicker.global_var.purification_current += parseFloat(clicker.global_var.purify_per_sec/4);
 	purificationChecker();
+	
+	saveToLocal();
 
 	setTimeout(function() {
 		requestAnimationFrame(get_ressources);
@@ -294,17 +308,19 @@ function add_money(addCoeff, type){
 		//		console.log(parseFloat(addCoeff/10))
 		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
+		saveToLocal();
 	} else if(type == "energie"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/5);
 		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
+		saveToLocal();
 	}
 }
 
 /*Gauge of purification checker*/
 function purificationChecker(){
 	clicker.global_var.purification_current_percentage = parseInt(parseFloat(clicker.global_var.purification_current/clicker.global_var.purification*100));
-	clicker.ressources.gauge_pourcent.innerHTML = clicker.global_var.purification_current_percentage + " %";
+	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 	clicker.ressources.gauge.style = "transform: scaleX(" + (clicker.global_var.purification_current/clicker.global_var.purification*100)/100 + ")";
 	planetImagesChange();
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
@@ -314,9 +330,10 @@ function purificationChecker(){
 		clicker.global_var.purification *= clicker.global_var.coefficient_purification;
 		clicker.global_var.purification_current = 0;
 		clicker.global_var.purification_current_percentage = 0;
-		clicker.ressources.gauge_pourcent.innerHTML = clicker.global_var.purification_current_percentage + " %";
+		clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 		clicker.ressources.gauge.style = "transform: scaleX(0)";
 		initialisePlanetImage();
+		saveToLocal();
 	}
 }
 
@@ -392,6 +409,7 @@ function updateItemShop(){
 	if(clicker.global_var.ressources[thisItem].typeItem == "click aids") buyDetritusTool(thisItem);
 	else if(clicker.global_var.ressources[thisItem].typeItem == "detritus auto") buyDetritusAids(thisItem);
 	else if(clicker.global_var.ressources[thisItem].typeItem == "energie tools") buyEnergieItem(thisItem);
+	saveToLocal();
 }
 
 function updateInventory(thisItem){
@@ -428,6 +446,7 @@ function updateInventory(thisItem){
 			if(dataKey == thisItem) clicker.ressources.inventory_items[i].innerHTML = clicker.global_var.ressources[thisItem].available;
 		}
 	}
+	saveToLocal();
 }
 
 //SHOP ITEM
@@ -510,4 +529,25 @@ function initialiseShop(){
 
 }
 
-initialiseShop();
+
+function saveToLocal(){
+	var txt = JSON.stringify(clicker.global_var);
+	localStorage.setItem("clicker_ressources", txt)
+}
+
+function setSavedGame(){
+	clicker.global_var.next_display_item = 0; //item to display in the shop
+	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
+	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
+	clicker.ressources.energie_total.innerHTML = parseInt(clicker.global_var.energie_total);
+	if(clicker.global_var.energie_total > 0) get_ressources();
+	purificationChecker();
+	initialisePlanetImage();
+	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
+	initialiseShop();
+}
+
+clicker.ressources.logo.addEventListener("click", function(){
+	localStorage.removeItem("clicker_ressources");
+	location.reload();
+});
