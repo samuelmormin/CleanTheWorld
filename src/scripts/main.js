@@ -12,6 +12,8 @@ clicker.ressources.gauge_pourcent = document.querySelector(".percentage"); //cur
 clicker.ressources.energie_total = document.querySelector(".incrementingEnergie"); // counter of energie
 clicker.ressources.shop = document.querySelector('.clicker_shop_block ul'); //shop element
 clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li'); //shop's items elements
+clicker.ressources.inventory = document.querySelector(".inventory ul"); //inventory element
+clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li"); //inventory items elements
 
 //Global variables
 clicker.global_var.current_level = 1; // start level
@@ -38,7 +40,7 @@ clicker.global_var.ressources = [
 		name: "gants",
 		value: 2,
 		price: 5,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "src/img/gloveIcon.png",
 		show: 0},
@@ -73,7 +75,7 @@ clicker.global_var.ressources = [
 		name: "pince",//dfjffdfffffffffffffffffff
 		value: 5,
 		price: 65,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "src/img/",
 		show: 0},
@@ -124,7 +126,7 @@ clicker.global_var.ressources = [
 		name: "pelle",
 		value: 30,
 		price: 320,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "src/img/spadeIcon.png",
 		show: 0},
@@ -140,7 +142,7 @@ clicker.global_var.ressources = [
 		name: "brouette",
 		value: 40,
 		price: 470,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "src/img/wheelbarrowIcon.png",
 		show: 0},
@@ -174,7 +176,7 @@ clicker.global_var.ressources = [
 		name: "pelleteuse",
 		value: 100,
 		price: 1000,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "src/img/diggerIcon.png",
 		show: 0},
@@ -225,7 +227,7 @@ clicker.global_var.ressources = [
 		name: "camion benne",
 		value: 500,
 		price: 3000,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "src/img/truckIcon.png",
 		show: 0},
@@ -241,7 +243,7 @@ clicker.global_var.ressources = [
 		name: "T 282B",//dfjffdfffffffffffffffffff
 		value: 1000,
 		price: 7600,
-		level: 0,
+		available: 0,
 		typeItem: "click aids",
 		url: "",
 		show: 0},
@@ -280,10 +282,10 @@ function get_ressources(){
 
 	clicker.global_var.purification_current += parseFloat(clicker.global_var.purify_per_sec/4);
 	purificationChecker();
-	
+
 	setTimeout(function() {
-        requestAnimationFrame(get_ressources);
-    }, 1000);
+		requestAnimationFrame(get_ressources);
+	}, 1000);
 }
 
 //var sec_generator = setInterval(get_ressources, 1000);
@@ -291,12 +293,12 @@ function get_ressources(){
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
-//		console.log(parseFloat(addCoeff/10))
-				clicker.global_var.money_total += parseFloat(addCoeff/10);
+		//		console.log(parseFloat(addCoeff/10))
+		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
 	} else if(type == "energie"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/5);
-				clicker.global_var.money_total += parseFloat(addCoeff/10);
+		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
 	}
 }
@@ -308,7 +310,7 @@ function purificationChecker(){
 	clicker.ressources.gauge.style = "transform: scaleX(" + (clicker.global_var.purification_current/clicker.global_var.purification*100)/100 + ")";
 	planetImagesChange();
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
-		clicker.global_var.current_level++;
+		clicker.global_var.current_available++;
 		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
 		// clicker.ressources.clicker_level.innerHTML = clicker.global_var.current_level;
 		clicker.global_var.purification *= clicker.global_var.coefficient_purification;
@@ -358,29 +360,28 @@ function initialisePlanetImage(){
 function updateShop(){
 	if(clicker.global_var.next_display_item < clicker.global_var.ressources.length){
 		var next_item = clicker.global_var.ressources[clicker.global_var.next_display_item].price;
-		if((next_item <= clicker.global_var.money_total)&&(clicker.global_var.ressources[clicker.global_var.next_display_item].show == 0)){
-			clicker.global_var.ressources[clicker.global_var.next_display_item].show = 1;
+		if(next_item <= clicker.global_var.money_total){
 			var newItem = document.createElement("LI");
 			newItem.setAttribute("data-key", clicker.global_var.next_display_item);
-			
+
 			var newIcon = document.createElement("IMG");
 			newIcon.setAttribute("src", clicker.global_var.ressources[clicker.global_var.next_display_item].url);
 			newIcon.setAttribute("alt", clicker.global_var.ressources[clicker.global_var.next_display_item].name);
-			
+
 			var newName = document.createElement("P");
 			var textNewName = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].name);
 			newName.classList.add("name");
 			newName.appendChild(textNewName);
-			
+
 			var newPrice = document.createElement("P");
 			var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price + ' pièces');
 			newPrice.classList.add("price-item");
 			newPrice.appendChild(textNewPrice);
-			
+
 			newItem.appendChild(newIcon);
 			newItem.appendChild(newName);
 			newItem.appendChild(newPrice);
-			
+
 			clicker.ressources.shop.appendChild(newItem);
 			clicker.global_var.next_display_item++;
 			updateLiFonction(clicker.global_var.next_display_item);
@@ -396,7 +397,36 @@ function updateItemShop(){
 	else if(clicker.global_var.ressources[thisItem].typeItem == "energie tools") buyEnergieItem(thisItem);
 }
 
-
+function updateInventory(thisItem){
+	if(clicker.global_var.ressources[thisItem].show == 0){
+		console.log(clicker.global_var.ressources[thisItem]);
+		clicker.global_var.ressources[thisItem].show = 1;
+		var newItem = document.createElement("LI");
+		newItem.setAttribute("data-key", thisItem);
+		
+		var newIcon = document.createElement("IMG");
+		newIcon.setAttribute("src", clicker.global_var.ressources[thisItem].url);
+		newIcon.setAttribute("alt", clicker.global_var.ressources[thisItem].name);
+		
+		var newDiv = document.createElement("DIV");
+		newDiv.classList.add("inventory_number");
+		
+		var newDivNumber = document.createElement("P");
+		var number = document.createTextNode(clicker.global_var.ressources[thisItem].available);
+		
+		newDivNumber.appendChild(number);
+		newDiv.appendChild(newDivNumber);
+		
+		newItem.appendChild(newIcon);
+		newItem.appendChild(newDiv);
+		
+		clicker.ressources.inventory.appendChild(newItem);
+		
+	} else{
+		clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li");
+		console.log(clicker.ressources.inventory_items[thisItem]);
+	}
+}
 
 //SHOP ITEM
 
@@ -405,13 +435,13 @@ function buyDetritusTool(item){
 	console.log("buy detritus per click || " + item + clicker.global_var.detritus_click_result);
 	if(clicker.global_var.ressources[item].price <= clicker.global_var.money){
 		clicker.global_var.money -= clicker.global_var.ressources[item].price;
-		clicker.global_var.ressources[item].level++;
+		clicker.global_var.ressources[item].available++;
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
 		clicker.global_var.detritus_click_result += clicker.global_var.ressources[item].value; 
-		//			console.log(clicker.global_var.click_aids[select_value].name + " : " + clicker.global_var.click_aids[select_value].level + " : " + clicker.global_var.ressources[item].price + " pièce");
 		console.log(clicker.ressources.shop_items[item].querySelector(".price-item"));
 		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		updateInventory(item);
 	}
 }
 
@@ -429,6 +459,7 @@ function buyDetritusAids(item){
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
 			get_ressources();
+			updateInventory(item);
 		}
 	}
 }
@@ -447,6 +478,7 @@ function buyEnergieItem(item){
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
 			get_ressources();
+			updateInventory(item);
 		}
 	}
 }
