@@ -555,10 +555,13 @@ div.store
 
 .rightMenu
 {
+    position: absolute;
     width: 20%;
     height: 500px;
     display: inline-block;
     vertical-align: top;
+    z-index: 172;
+    right: 3%;
 }
 
 .rightMenu ul li a .incrementingNumber
@@ -596,13 +599,14 @@ p.price-item
     right: 10%;
 }
 
-
-
 .rightMenu ul
 {
     margin: -10px;
 }
 
+.rightMenu ul li a, .rightMenu ul li{
+    cursor: default;
+}
 
 /*************************************
 
