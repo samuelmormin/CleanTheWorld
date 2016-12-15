@@ -19,7 +19,7 @@ planetEarth.addEventListener('animationend', function()
 
 
 
-//ANIMATION oneAnimActive 
+//ANIMATION oneAnimActive
 body.addEventListener('mousemove', function(event)
 {
     mouse.x                 = event.clientX;
@@ -42,6 +42,6 @@ planetEarth.addEventListener('click', function()
 
     node.addEventListener('animationend', function()
     {
-        node.style.display = "none";
+        node.remove(node.selectedIndex);
     });
 });
