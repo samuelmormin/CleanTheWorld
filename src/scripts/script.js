@@ -14,10 +14,7 @@ planetEarth.addEventListener('click', function()
 planetEarth.addEventListener('animationend', function()
 {
     planetEarth.classList.remove('clickEffect1');
-
 });
-
-
 
 //ANIMATION oneAnimActive
 body.addEventListener('mousemove', function(event)
@@ -30,7 +27,6 @@ body.addEventListener('mousemove', function(event)
     mouseDiv.style.top      = mouseDivPosition.y + "px";
 });
 
-
 planetEarth.addEventListener('click', function()
 {
     var node = document.createElement("P");
@@ -38,7 +34,6 @@ planetEarth.addEventListener('click', function()
     node.appendChild(textnode);
     node.classList.add('oneAnimActive');
     mouseDiv.appendChild(node);
-    console.log(node);
 
     node.addEventListener('animationend', function()
     {
