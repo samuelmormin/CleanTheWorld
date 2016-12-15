@@ -24,6 +24,7 @@ clicker.global_var.current_level = 1; // start level
 clicker.global_var.coeficient_price = 2; // coefficient for price
 clicker.global_var.coefficient_purification = 1.2; // coefficient of purification for each level
 clicker.global_var.current_image = 5;
+clicker.global_var.generat_per_sec = false;
 clicker.global_var.detritus = 0; //number of detritus collected
 clicker.global_var.detritus_click_result = 10; //number of detritus collected per click
 clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
@@ -45,22 +46,25 @@ clicker.global_var.ressources = [
 		price: 5,
 		level: 0,
 		typeItem: "click aids",
+		url: "src/img/gloveIcon.png",
 		show: 0},
 	{
-		name: "banzaï",
+		name: "bonzaï",
 		value_purification: 30,
 		value_energie: 2.5,
 		price: 10,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/bonzaiIcon.png",
 		show: 0},
 	{
-		name: "arbust",
+		name: "arbuste",
 		value_purification: 50,
 		value_energie: 5,
 		price: 20,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/littletreeIcon.png",
 		show: 0},
 	{
 		name: "eolienne",
@@ -69,21 +73,24 @@ clicker.global_var.ressources = [
 		price: 60,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/windturbineIcon.png",
 		show: 0},
 	{
-		name: "pince",
+		name: "pince",//dfjffdfffffffffffffffffff
 		value: 5,
 		price: 65,
 		level: 0,
 		typeItem: "click aids",
+		url: "src/img/",
 		show: 0},
 	{
-		name: "arbre de vie",
+		name: "buisson",
 		value_purification: 70,
 		value_energie: 10,
 		price: 80,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/shrubIcon.png",
 		show: 0},
 	{
 		name: "bénévole écolo",
@@ -91,21 +98,16 @@ clicker.global_var.ressources = [
 		price: 100,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "src/img/volunteerIcon.png",
 		show: 0},
 	{
-		name: "sac poubelle",
-		value: 10,
-		price: 150,
-		level: 0,
-		typeItem: "click aids",
-		show: 0},
-	{
-		name: "arbre fruitié",
+		name: "arbre fruitier",
 		value_purification: 100,
 		value_energie: 20,
 		price: 200,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/fruittreeIcon.png",
 		show: 0},
 	{
 		name: "ouvrier",
@@ -113,6 +115,7 @@ clicker.global_var.ressources = [
 		price: 210,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "src/img/workerIcon.png",
 		show: 0},
 	{
 		name: "barrage",
@@ -121,6 +124,7 @@ clicker.global_var.ressources = [
 		price: 250,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/hydraulicbamIcon.png",
 		show: 0},
 	{
 		name: "pelle",
@@ -128,6 +132,7 @@ clicker.global_var.ressources = [
 		price: 320,
 		level: 0,
 		typeItem: "click aids",
+		url: "src/img/spadeIcon.png",
 		show: 0},
 	{
 		name: "ouvrier spécialisé",
@@ -135,6 +140,7 @@ clicker.global_var.ressources = [
 		price: 430,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "src/img/specialworkerIcon.png",
 		show: 0},
 	{
 		name: "brouette",
@@ -142,6 +148,7 @@ clicker.global_var.ressources = [
 		price: 470,
 		level: 0,
 		typeItem: "click aids",
+		url: "src/img/wheelbarrowIcon.png",
 		show: 0},
 	{
 		name: "walee",
@@ -149,22 +156,25 @@ clicker.global_var.ressources = [
 		price: 700,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "src/img/walleIcon.png",
 		show: 0},
 	{
-		name: "panneau solaire",
+		name: "panneau solaire",//dfjffdfffffffffffffffffff
 		value_purification: 30,
 		value_energie: 160,
 		price: 780,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/",
 		show: 0},
 	{
-		name: "hevea",
+		name: "hevea", //dfjffdfffffffffffffffffff
 		value_purification: 300,
 		value_energie: 40,
 		price: 900,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/",
 		show: 0},
 	{
 		name: "pelleteuse",
@@ -172,21 +182,24 @@ clicker.global_var.ressources = [
 		price: 1000,
 		level: 0,
 		typeItem: "click aids",
+		url: "src/img/diggerIcon.png",
 		show: 0},
 	{
-		name: "super walee",
+		name: "super robot",
 		value: 100,
 		price: 1200,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "src/img/superrobotIcon.png",
 		show: 0},
 	{
-		name: "centrale à fusion",
+		name: "centrale à fusion",//dfjffdfffffffffffffffffff
 		value_purification: 40,
 		value_energie: 320,
 		price: 1300,
 		available: 0,
 		typeItem: "energie tools",
+		url: "",
 		show: 0},
 	{
 		name: "arbre alienne",
@@ -195,13 +208,15 @@ clicker.global_var.ressources = [
 		price: 2100,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/alientree.png",
 		show: 0},
 	{
-		name: "régiment alienne",
+		name: "régiment alienne",//dfjffdfffffffffffffffffff
 		value: 200,
 		price: 2200,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "",
 		show: 0},
 	{
 		name: "méga centrale",
@@ -210,6 +225,7 @@ clicker.global_var.ressources = [
 		price: 2500,
 		available: 0,
 		typeItem: "energie tools",
+		url: "src/img/megacentralIcon.png",
 		show: 0},
 	{
 		name: "camion benne",
@@ -217,20 +233,23 @@ clicker.global_var.ressources = [
 		price: 3000,
 		level: 0,
 		typeItem: "click aids",
+		url: "src/img/truckIcon.png",
 		show: 0},
 	{ 																															
-		name: "bataillon intergalactic",
+		name: "bataillon intergalactic", //dfjffdfffffffffffffffffff
 		value: 500,
 		price: 3500,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "",
 		show: 0},
 	{
-		name: "T 282B",
+		name: "T 282B",//dfjffdfffffffffffffffffff
 		value: 1000,
 		price: 7600,
 		level: 0,
 		typeItem: "click aids",
+		url: "",
 		show: 0},
 	{
 		name: "l'armée des écolos intergalactic",
@@ -238,6 +257,7 @@ clicker.global_var.ressources = [
 		price: 10000,
 		available: 0,
 		typeItem: "detritus auto",
+		url: "",
 		show: 0},
 ];
 
@@ -266,6 +286,10 @@ function get_ressources(){
 
 	clicker.global_var.purification_current += parseFloat(clicker.global_var.purify_per_sec/4);
 	purificationChecker();
+	
+	setTimeout(function() {
+        requestAnimationFrame(get_ressources);
+    }, 1000);
 }
 
 //var sec_generator = setInterval(get_ressources, 1000);
@@ -273,7 +297,7 @@ function get_ressources(){
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
-		console.log(parseFloat(addCoeff/10))
+//		console.log(parseFloat(addCoeff/10))
 				clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
 	} else if(type == "energie"){
@@ -304,6 +328,7 @@ function purificationChecker(){
 
 function updateLiFonction(thisLi){
 	thisLi--;
+	console.log(thisLi);
 	clicker.ressources.shop_items = document.querySelectorAll('.clicker_shop_block ul li');
 	clicker.ressources.shop_items[thisLi].addEventListener("click", updateItemShop);
 }
@@ -357,7 +382,6 @@ function updateShop(){
 
 function updateItemShop(){
 	var thisItem = parseInt(this.getAttribute("data-key"));
-	//	console.log(clicker.global_var.ressources[thisItem].typeItem);
 	if(clicker.global_var.ressources[thisItem].typeItem == "click aids") buyDetritusTool(thisItem);
 	else if(clicker.global_var.ressources[thisItem].typeItem == "detritus auto") buyDetritusAids(thisItem);
 	else if(clicker.global_var.ressources[thisItem].typeItem == "energie tools") buyEnergieItem(thisItem);
@@ -393,6 +417,10 @@ function buyDetritusAids(item){
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 		console.log(clicker.global_var.detritus_per_sec);
 		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		if(clicker.global_var.generat_per_sec != true){
+			clicker.global_var.generat_per_sec = false;
+			get_ressources();
+		}
 	}
 }
 
@@ -407,6 +435,10 @@ function buyEnergieItem(item){
 		clicker.global_var.ressources[item].available++;
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
 		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		if(clicker.global_var.generat_per_sec != true){
+			clicker.global_var.generat_per_sec = false;
+			get_ressources();
+		}
 	}
 }
 
