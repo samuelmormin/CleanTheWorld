@@ -322,7 +322,6 @@ function purificationChecker(){
 
 function updateLiFonction(thisLi){
 	thisLi--;
-	console.log(thisLi);
 	clicker.ressources.shop_items = document.querySelectorAll('.clicker_shop_block ul li');
 	clicker.ressources.shop_items[thisLi].addEventListener("click", updateItemShop);
 }
@@ -397,33 +396,37 @@ function updateItemShop(){
 
 function updateInventory(thisItem){
 	if(clicker.global_var.ressources[thisItem].show == 0){
-		console.log(clicker.global_var.ressources[thisItem]);
 		clicker.global_var.ressources[thisItem].show = 1;
 		var newItem = document.createElement("LI");
 		newItem.setAttribute("data-key", thisItem);
-		
+
 		var newIcon = document.createElement("IMG");
 		newIcon.setAttribute("src", clicker.global_var.ressources[thisItem].url);
 		newIcon.setAttribute("alt", clicker.global_var.ressources[thisItem].name);
-		
+
 		var newDiv = document.createElement("DIV");
 		newDiv.classList.add("inventory_number");
-		
+
 		var newDivNumber = document.createElement("P");
 		var number = document.createTextNode(clicker.global_var.ressources[thisItem].available);
 		newDivNumber.classList.add("item_number");
-		
+		newDivNumber.setAttribute("data-key", thisItem);
+
 		newDivNumber.appendChild(number);
 		newDiv.appendChild(newDivNumber);
-		
+
 		newItem.appendChild(newIcon);
 		newItem.appendChild(newDiv);
-		
+
 		clicker.ressources.inventory.appendChild(newItem);
-		
+
 	} else{
 		clicker.ressources.inventory_items = document.querySelectorAll(".item_number");
-		clicker.ressources.inventory_items[thisItem].innerHTML = clicker.global_var.ressources[thisItem].available;
+		var inventoryLenght = clicker.ressources.inventory_items.length;
+		for(var i = 0; i < inventoryLenght; i++){
+			var dataKey = parseInt(clicker.ressources.inventory_items[i].getAttribute("data-key"));
+			if(dataKey == thisItem) clicker.ressources.inventory_items[i].innerHTML = clicker.global_var.ressources[thisItem].available;
+		}
 	}
 }
 
@@ -431,14 +434,12 @@ function updateInventory(thisItem){
 
 //buy tool to get more detritus per click
 function buyDetritusTool(item){
-	console.log("buy detritus per click || " + item + clicker.global_var.detritus_click_result);
 	if(clicker.global_var.ressources[item].price <= clicker.global_var.money){
 		clicker.global_var.money -= clicker.global_var.ressources[item].price;
 		clicker.global_var.ressources[item].available++;
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
 		clicker.global_var.detritus_click_result += clicker.global_var.ressources[item].value; 
-		console.log(clicker.ressources.shop_items[item].querySelector(".price-item"));
 		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
 		updateInventory(item);
 	}
@@ -446,14 +447,12 @@ function buyDetritusTool(item){
 
 //item to have more detritus per sec
 function buyDetritusAids(item){
-	console.log("buy detritus per sec || " + item);
 	if(clicker.global_var.ressources[item].price <= clicker.global_var.money){
 		clicker.global_var.money -= clicker.global_var.ressources[item].price;
 		clicker.global_var.detritus_per_sec += clicker.global_var.ressources[item].value;
 		clicker.global_var.ressources[item].available++;
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * 1.2);
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
-		console.log(clicker.global_var.detritus_per_sec);
 		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
@@ -465,7 +464,6 @@ function buyDetritusAids(item){
 
 //item to get energie
 function buyEnergieItem(item){
-	console.log("buy energie per sec || " + item);
 	if(clicker.global_var.ressources[item].price <= clicker.global_var.money){ 
 		clicker.global_var.money -= clicker.global_var.ressources[item].price;
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
