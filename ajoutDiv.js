@@ -5,7 +5,7 @@ var inventory_ul = document.querySelector('.inventory ul');
 
 clicker_shop_block.addEventListener('click', function(){
     var test = document.querySelector('.clicker_shop_block ul li').firstChild;
-    inventory_ul.innerHTML += '<li>'+test+'</li>';
+    inventory_ul.innerHTML += '<li>'+test+'<div class="inventory_number"><p>3</p></div></li>';
 });
 
 
