@@ -459,7 +459,7 @@ function buyDetritusTool(item){
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
 		clicker.global_var.detritus_click_result += clicker.global_var.ressources[item].value; 
-		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièces";
 		updateInventory(item);
 	}
 }
@@ -472,7 +472,7 @@ function buyDetritusAids(item){
 		clicker.global_var.ressources[item].available++;
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * 1.2);
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
-		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièces";
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
 			get_ressources();
@@ -490,7 +490,7 @@ function buyEnergieItem(item){
 		clicker.global_var.purify_per_sec = parseFloat(clicker.global_var.purify_per_sec + clicker.global_var.ressources[item].value_purification/20);
 		clicker.global_var.ressources[item].available++;
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
-		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièce";
+		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièces";
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
 			get_ressources();

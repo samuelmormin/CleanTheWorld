@@ -50,7 +50,7 @@ function randSitation(){
 
 	actual_text = 0;
 
-	afficheMessage = setInterval("changeMessage()",100);
+	afficheMessage = setInterval("changeMessage()",80);
 
 }
 
