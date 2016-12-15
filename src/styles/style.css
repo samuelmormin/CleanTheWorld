@@ -38,7 +38,7 @@ div.container
 
 .oneAnimActive
 {
-    animation: plusOneAnim 0.6s ease;
+    animation: plusOneAnim 0.6s ease forwards;
 }
 
 @keyframes plusOneAnim {
@@ -279,10 +279,11 @@ div.planet img
     font-family: 'Passion One', cursive;
 }
 
-.div.mouseClickEffect{
+div.mouseClickEffect{
   position: absolute;
   height: 10px;
   width: 10px;
+  display: block;
 }
 
 /*************************************

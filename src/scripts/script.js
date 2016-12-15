@@ -1,11 +1,11 @@
-var body                 = document.querySelector("body");
-var planetEarth          = document.querySelector(".planet");
-var mouseDiv             = document.querySelector("div.mouseClickEffect");
-var mouse                = { x : 0, y : 0 };
-var mouseDivPosition     = { x : 0, y : 0 };
-var mouseDivChild        =  document.querySelector("div.mouseDiv p");
-console.log(body);
+var body                 = document.querySelector("body");                      //récupération du body
+var planetEarth          = document.querySelector(".planet");                   //récupération de l'élément qui à la classe .planet
+var mouseDiv             = document.querySelector("div.mouseClickEffect");      //récupération de la div avec l'animation oneAnim
+var mouse                = { x : 0, y : 0 };                                    //Position du corseur de la souris
+var mouseDivPosition     = { x : 0, y : 0 };                                    //Position de la div pour l'animation
+var mouseDivChild        =  document.querySelector("div.mouseDiv p");           //Enfant de la div pour oneAnim
 
+//ANIMATION ON CLICK PLANETS
 planetEarth.addEventListener('click', function()
 {
     planetEarth.classList.add('clickEffect1')
@@ -17,6 +17,9 @@ planetEarth.addEventListener('animationend', function()
 
 });
 
+
+
+//ANIMATION oneAnimActive 
 body.addEventListener('mousemove', function(event)
 {
     mouse.x                 = event.clientX;
@@ -30,11 +33,15 @@ body.addEventListener('mousemove', function(event)
 
 planetEarth.addEventListener('click', function()
 {
-    mouseDiv.innerHTML = "<p>+ " + clicker.global_var.detritus_click_result + "</p>";
-    mouseDiv.firstChild.style.animation = "plusOneAnim 0.6s ease";
-});
+    var node = document.createElement("P");
+    var textnode = document.createTextNode("+" + clicker.global_var.detritus_click_result);
+    node.appendChild(textnode);
+    node.classList.add('oneAnimActive');
+    mouseDiv.appendChild(node);
+    console.log(node);
 
-mouseDiv.addEventListener('animationend', function(){
-    mouseDiv.firstChild.style.animation = "";
-    mouseDiv.removeChild(mouseDiv.firstChild);
+    node.addEventListener('animationend', function()
+    {
+        node.style.display = "none";
+    });
 });
