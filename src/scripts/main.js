@@ -352,6 +352,7 @@ function purificationChecker(){
 		clicker.global_var.purification_current_percentage = 0;
 		clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 		clicker.ressources.gauge.style = "transform: scaleX(0)";
+		clicker.global_var.planet_current++;
 		setNewPlanet();
 		initialisePlanetImage();
 //		clicker.ressources.levelUp.classList.add(".displayNone");
@@ -609,7 +610,6 @@ function setNewPlanet(){
 	}
 	console.log(allPlanetImage);
 	clicker.ressources.planet_current.innerHTML = allPlanetImage;
-	clicker.global_var.planet_current++;
 }
 
 function setCurrentPlanet(){
