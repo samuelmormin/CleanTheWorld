@@ -438,6 +438,7 @@ function updateShop(){
 			newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
 			newBouttonDirection.appendChild(newBouttonDirectionImage);
 			newBouttonDescrip.appendChild(newBouttonDirection);
+			newBouttonDirection.classList.add("descriptionDirection");
 
 			newItem.appendChild(newIcon);
 			newItem.appendChild(newName);
@@ -586,6 +587,7 @@ function initialiseShop(){
 		newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
 		newBouttonDirection.appendChild(newBouttonDirectionImage);
 		newBouttonDescrip.appendChild(newBouttonDirection);
+		newBouttonDirection.classList.add("descriptionDirection");
 
 		newItem.appendChild(newIcon);
 		newItem.appendChild(newName);
@@ -678,6 +680,7 @@ function setSavedGame(){
 		newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
 		newBouttonDirection.appendChild(newBouttonDirectionImage);
 		newBouttonDescrip.appendChild(newBouttonDirection);
+		newBouttonDirection.classList.add("descriptionDirection");
 
 		newItem.appendChild(newIcon);
 		newItem.appendChild(newName);
