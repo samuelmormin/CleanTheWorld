@@ -17,11 +17,11 @@ clicker.ressources.logo = document.querySelector(".logo");// logo of the game
 clicker.ressources.planet_name = document.querySelector(".planetName"); //current planet name
 clicker.ressources.levelUp = document.querySelector(".levelUp");
 
-if(typeof(Storage) !== "undefined") {
-	if (localStorage.clicker_ressources) {
+if(typeof(Storage) !== "undefined") { //If local storage exist
+	if (localStorage.clicker_ressources) { //if aleready play to the game
 
 		clicker.global_var = JSON.parse(localStorage.clicker_ressources);
-		setSavedGame();
+		setSavedGame(); //initialise the game
 
 	} else {
 		clicker.global_var = {};
@@ -33,7 +33,7 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.current_image = 	5; //current planet state
 		clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 		clicker.global_var.detritus = 0; //number of detritus collected
-		clicker.global_var.detritus_click_result = 50; //number of detritus collected per click
+		clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
 		clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
 		clicker.global_var.money = 0; //Indicator of your money
 		clicker.global_var.money_total = 0 //total money collected
@@ -47,7 +47,7 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.detritus_per_sec = 0; //detritus per second
 		clicker.global_var.next_display_item = 0; //item to display in the shop
 		clicker.global_var.planet_current = 0;
-		clicker.global_var.ressources = [
+		clicker.global_var.ressources = [ //all item avaible in game
 			{ 
 				name: "Gants",
 				value: 2,
@@ -282,7 +282,6 @@ if(typeof(Storage) !== "undefined") {
 				images: ["src/img/planet3_1.png", "src/img/planet3_2.png", "src/img/planet3_3.png", "src/img/planet3_4.png", "src/img/planet3_5.png", "src/img/planet3_6.png"]
 			}
 		];
-
 		setNewPlanet();
 		initialiseShop();
 	}
@@ -321,7 +320,7 @@ function get_ressources(){
 	}, 1000); // call funtion after 1 second
 }
 
-//
+//update the current money
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
@@ -345,8 +344,6 @@ function purificationChecker(){
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
 		clicker.global_var.current_available++;
 		levelUp();
-		//		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
-		// clicker.ressources.clicker_level.innerHTML = clicker.global_var.current_level;
 		clicker.global_var.purification *= clicker.global_var.coefficient_purification;
 		clicker.global_var.purification_current = 0;
 		clicker.global_var.purification_current_percentage = 0;
@@ -355,7 +352,6 @@ function purificationChecker(){
 		clicker.global_var.planet_current++;
 		setNewPlanet();
 		initialisePlanetImage();
-		//		clicker.ressources.levelUp.classList.add(".displayNone");
 		saveToLocal();
 	}
 }
@@ -370,13 +366,14 @@ function levelUp(){
 	}, 3000);
 }
 
+//update event on current li
 function updateLiFonction(thisLi){
 	thisLi--;
 	clicker.ressources.shop_items = document.querySelectorAll('.clicker_shop_block ul li');
 	clicker.ressources.shop_items[thisLi].addEventListener("click", updateItemShop);
-	console.log(clicker.ressources.shop_items);
 }
 
+//change the state of current planet
 function planetImagesChange(){
 	clicker.ressources.planet_images = document.querySelectorAll(".planet div");
 	if ((clicker.global_var.purification_current_percentage > 17)&&(clicker.global_var.current_image == 5)) {
@@ -397,6 +394,7 @@ function planetImagesChange(){
 	}
 }
 
+// reset state of next planet
 function initialisePlanetImage(){
 	var lengthTab = clicker.ressources.planet_images.length;
 	for (var i = 0; i < lengthTab; i++) {
@@ -460,6 +458,7 @@ function updateShop(){
 			clicker.ressources.shop.appendChild(newItem);
 			clicker.global_var.next_display_item++;
 			updateLiFonction(clicker.global_var.next_display_item);
+			saveToLocal();
 		}
 	}
 }
@@ -507,7 +506,6 @@ function updateInventory(thisItem){
 			if(dataKey == thisItem) clicker.ressources.inventory_items[i].innerHTML = clicker.global_var.ressources[thisItem].available;
 		}
 	}
-	saveToLocal();
 }
 
 //SHOP ITEM
@@ -560,6 +558,7 @@ function buyEnergieItem(item){
 	}
 }
 
+//initialise shop when game start
 function initialiseShop(){
 	for(i = 0; i < 3; i++){
 		var newItem = document.createElement("LI");
@@ -612,11 +611,12 @@ function initialiseShop(){
 		clicker.global_var.next_display_item++;
 		updateLiFonction(clicker.global_var.next_display_item);
 	}
+	saveToLocal();
 
 }
 
+//set a set of image of a new planet
 function setNewPlanet(){
-	console.log(clicker.global_var.planet_current);
 	var thisPlanet = clicker.global_var.planet_current % 3;
 	clicker.ressources.planet_name.innerHTML = clicker.global_var.planet[thisPlanet].name;
 	var allPlanetImage = "";
@@ -624,10 +624,10 @@ function setNewPlanet(){
 		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
 		allPlanetImage += '" alt="" class="' + clicker.global_var.planet[thisPlanet].name + i + '"></div>';
 	}
-	console.log(allPlanetImage);
 	clicker.ressources.planet_current.innerHTML = allPlanetImage;
 }
 
+//set current planet when load game from localStorage
 function setCurrentPlanet(){
 	var thisPlanet = clicker.global_var.planet_current;
 	clicker.ressources.planet_name.innerHTML = clicker.global_var.planet[thisPlanet].name;
@@ -636,15 +636,16 @@ function setCurrentPlanet(){
 		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
 		allPlanetImage += '" alt="" class="' + clicker.global_var.planet[thisPlanet].name + i + '"></div>';
 	}
-	console.log(allPlanetImage);
 	clicker.ressources.planet_current.innerHTML = allPlanetImage;
 }
 
+//use to save to localStorage
 function saveToLocal(){
 	var txt = JSON.stringify(clicker.global_var);
 	localStorage.setItem("clicker_ressources", txt)
 }
 
+//set the game from the last session
 function setSavedGame(){
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
@@ -654,9 +655,9 @@ function setSavedGame(){
 	purificationChecker();
 	initialisePlanetImage();
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
+	
 	//Update current planet
 	for(var i = 0; i < clicker.global_var.next_display_item ; i++){
-		console.log(i);
 		var newItem = document.createElement("LI");
 		newItem.setAttribute("data-key", i);
 

@@ -1,3 +1,9 @@
+/*************************************************
+
+		Function to write messages on index.html
+
+************************************************/
+
 var sitations = ["Une catastrophe s’est produite dans notre galaxie.", "Les planètes sont toutes devenues polluées et invivables.", "Aide-nous à les purifier en ramassant tous les déchets !"];
 var afficheMessage;
 var show_text;

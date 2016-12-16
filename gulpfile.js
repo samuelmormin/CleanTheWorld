@@ -24,7 +24,21 @@ gulp.task( 'css_hover', function(){
 gulp.task( 'css_intro', function(){
 	return gulp.src( './src/styles/style_intro.css')    // Get url of the main CSS file
 		.pipe( gulp_css_nano() )                // Minify it
-		.pipe( gulp_rename( 'style.min.css' ) ) // Rename it
+		.pipe( gulp_rename( 'intro.min.css' ) ) // Rename it
+		.pipe( gulp.dest( './src/styles/' ) );     // Put it in folder if doesn't exist it will creat it
+} );
+// CSS task
+gulp.task( 'css_responsive', function(){
+	return gulp.src( './src/styles/responsive.css')    // Get url of the main CSS file
+		.pipe( gulp_css_nano() )                // Minify it
+		.pipe( gulp_rename( 'responsive.min.css' ) ) // Rename it
+		.pipe( gulp.dest( './src/styles/' ) );     // Put it in folder if doesn't exist it will creat it
+} );
+// CSS task
+gulp.task( 'css_div', function(){
+	return gulp.src( './src/styles/stylesDiv.css')    // Get url of the main CSS file
+		.pipe( gulp_css_nano() )                // Minify it
+		.pipe( gulp_rename( 'stylesDiv.min.css' ) ) // Rename it
 		.pipe( gulp.dest( './src/styles/' ) );     // Put it in folder if doesn't exist it will creat it
 } );
 
@@ -45,18 +59,15 @@ gulp.task( 'js_script', function(){
 // JS task
 gulp.task( 'js_intro', function(){
 	return gulp.src( './src/scripts/script.js')
-		.pipe( gulp_concat( 'script.min.js' ) )
+		.pipe( gulp_concat( 'intro.min.js' ) )
+		.pipe( gulp_uglify() )
+		.pipe( gulp.dest( './src/scripts/' ) );
+} );
+// JS task
+gulp.task( 'js_ajoutDiv', function(){
+	return gulp.src( './src/scripts/ajoutDiv.js')
+		.pipe( gulp_concat( 'ajoutDiv.min.js' ) )
 		.pipe( gulp_uglify() )
 		.pipe( gulp.dest( './src/scripts/' ) );
 } );
 
-
-// Watch task
-gulp.task( 'watch', function()
-					{
-	// Watch for CSS modifications
-	gulp.watch( './src/css/style.css', [ 'css' ] );
-
-	// Watch for JS modifications (but not for script.min.js)
-	gulp.watch( [ './src/js/**', '!./src/js/script.min.js' ], [ 'js' ] );
-} );
