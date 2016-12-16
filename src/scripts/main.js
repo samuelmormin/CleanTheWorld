@@ -33,7 +33,7 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.current_image = 	5; //current planet state
 		clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 		clicker.global_var.detritus = 0; //number of detritus collected
-		clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
+		clicker.global_var.detritus_click_result = 50; //number of detritus collected per click
 		clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
 		clicker.global_var.money = 0; //Indicator of your money
 		clicker.global_var.money_total = 0 //total money collected
@@ -344,7 +344,7 @@ function purificationChecker(){
 	planetImagesChange();
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
 		clicker.global_var.current_available++;
-		clicker.ressources.levelUp.classList.remove(".displayNone");
+		levelUp();
 		//		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
 		// clicker.ressources.clicker_level.innerHTML = clicker.global_var.current_level;
 		clicker.global_var.purification *= clicker.global_var.coefficient_purification;
@@ -358,6 +358,16 @@ function purificationChecker(){
 		//		clicker.ressources.levelUp.classList.add(".displayNone");
 		saveToLocal();
 	}
+}
+
+//levelUp
+function levelUp(){
+	clicker.ressources.levelUp.classList.remove("displayNone");
+	clicker.ressources.levelUp.classList.add("levelUpAnim");
+	setTimeout(function() {
+		clicker.ressources.levelUp.classList.remove("levelUpAnim");
+		clicker.ressources.levelUp.classList.add("displayNone");
+	}, 3000);
 }
 
 function updateLiFonction(thisLi){
