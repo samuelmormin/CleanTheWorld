@@ -13,7 +13,9 @@ clicker.ressources.shop = document.querySelector('.clicker_shop_block ul'); //sh
 clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li'); //shop's items elements
 clicker.ressources.inventory = document.querySelector(".inventory ul"); //inventory element
 clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li"); //inventory items elements
-clicker.ressources.logo = document.querySelector(".header");// logo of the game
+clicker.ressources.logo = document.querySelector(".logo");// logo of the game
+clicker.ressources.planet_name = document.querySelector(".planetName"); //current planet name
+clicker.ressources.levelUp = document.querySelector(".levelUp");
 
 if(typeof(Storage) !== "undefined") {
 	if (localStorage.clicker_ressources) {
@@ -342,7 +344,8 @@ function purificationChecker(){
 	planetImagesChange();
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
 		clicker.global_var.current_available++;
-		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
+		clicker.ressources.levelUp.classList.remove(".displayNone");
+//		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
 		// clicker.ressources.clicker_level.innerHTML = clicker.global_var.current_level;
 		clicker.global_var.purification *= clicker.global_var.coefficient_purification;
 		clicker.global_var.purification_current = 0;
@@ -351,6 +354,7 @@ function purificationChecker(){
 		clicker.ressources.gauge.style = "transform: scaleX(0)";
 		setNewPlanet();
 		initialisePlanetImage();
+//		clicker.ressources.levelUp.classList.add(".displayNone");
 		saveToLocal();
 	}
 }
@@ -597,6 +601,7 @@ function initialiseShop(){
 function setNewPlanet(){
 	console.log(clicker.global_var.planet_current);
 	var thisPlanet = clicker.global_var.planet_current % 3;
+	clicker.ressources.planet_name.innerHTML = clicker.global_var.planet[thisPlanet].name;
 	var allPlanetImage = "";
 	for(var i = 0; i < 6; i++){
 		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
@@ -609,6 +614,7 @@ function setNewPlanet(){
 
 function setCurrentPlanet(){
 	var thisPlanet = clicker.global_var.planet_current;
+	clicker.ressources.planet_name.innerHTML = clicker.global_var.planet[thisPlanet].name;
 	var allPlanetImage = "";
 	for(var i = 0; i < 6; i++){
 		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
