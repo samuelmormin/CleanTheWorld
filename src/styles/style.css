@@ -539,11 +539,8 @@ div.store
 {
     position: absolute;
     width: 10%;
-    /*top: 4.5vh;
-    left:50%;*/
-    transform: translate(90%);
-    top: 2.75vh;
-    right: 9vh;
+    left: -65px;
+    top: -7px;
 }
 
 
