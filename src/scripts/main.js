@@ -405,16 +405,18 @@ function updateShop(){
 			}
 
 			newBouttonDescrip.classList.add("buttonDescription");
+			newBouttonDescrip.appendChild(newBouttonDescripText);
 
 			var newBouttonDirection = document.createElement("DIV");
 			var newBouttonDirectionImage = document.createElement("IMG");
 			newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+			newBouttonDirection.appendChild(newBouttonDirectionImage);
+			newBouttonDescrip.appendChild(newBouttonDirection);
 
 			newItem.appendChild(newIcon);
 			newItem.appendChild(newName);
 			newItem.appendChild(newPrice);
 			newItem.appendChild(newBouttonDescrip);
-			newItem.appendChild(newBouttonDirection);
 
 			clicker.ressources.shop.appendChild(newItem);
 			clicker.global_var.next_display_item++;
@@ -551,16 +553,18 @@ function initialiseShop(){
 		}
 
 		newBouttonDescrip.classList.add("buttonDescription");
+		newBouttonDescrip.appendChild(newBouttonDescripText);
 
 		var newBouttonDirection = document.createElement("DIV");
 		var newBouttonDirectionImage = document.createElement("IMG");
 		newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+		newBouttonDirection.appendChild(newBouttonDirectionImage);
+		newBouttonDescrip.appendChild(newBouttonDirection);
 
 		newItem.appendChild(newIcon);
 		newItem.appendChild(newName);
 		newItem.appendChild(newPrice);
 		newItem.appendChild(newBouttonDescrip);
-		newItem.appendChild(newBouttonDirection);
 
 		clicker.ressources.shop.appendChild(newItem);
 		clicker.global_var.next_display_item++;
@@ -616,16 +620,18 @@ function setSavedGame(){
 		}
 
 		newBouttonDescrip.classList.add("buttonDescription");
+		newBouttonDescrip.appendChild(newBouttonDescripText);
 
 		var newBouttonDirection = document.createElement("DIV");
 		var newBouttonDirectionImage = document.createElement("IMG");
 		newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
+		newBouttonDirection.appendChild(newBouttonDirectionImage);
+		newBouttonDescrip.appendChild(newBouttonDirection);
 
 		newItem.appendChild(newIcon);
 		newItem.appendChild(newName);
 		newItem.appendChild(newPrice);
 		newItem.appendChild(newBouttonDescrip);
-		newItem.appendChild(newBouttonDirection);
 
 		clicker.ressources.shop.appendChild(newItem);
 
