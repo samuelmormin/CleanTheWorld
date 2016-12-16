@@ -171,7 +171,7 @@ div.arrows img.arrowleft
 
 div.planet
 {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     margin-top: 60px;
     position: relative;
@@ -304,7 +304,8 @@ div.mouseClickEffect{
 .store
 {
     display: inline-block;
-    width: 300px;
+    position: absolute;
+    width: 600px;
     height: 200px;
     overflow-y:scroll;
 }
@@ -367,7 +368,19 @@ ul li p
     right: 3px;
     top: 3px;
 }
+div.store
+{
+    height: 600px;
+}
 
+.clicker_shop_block ul li:hover .buttonDescription
+{
+    display: block;
+}
+.clicker_shop_block ul li:hover .descriptionDirection
+{
+    display: block;
+}
 .buttonDescription
 {
     display: none;
@@ -375,7 +388,7 @@ ul li p
     top: -20px;
     left: 235px;
     background-color: rgba(3, 50, 108, 0.3);
-    width: 230px;
+    width: 300px;
     height: 40px;
     border: 1px solid rgba(121, 174, 55, 0.3);
     border-radius: 50px;
@@ -391,21 +404,6 @@ ul li p
     right: -14px;
     top: 0;
 }
-
-div.store
-{
-    height: 600px;
-}
-
-.clicker_shop_block ul li:hover .buttonDescription
-{
-    display: block;
-}
-.clicker_shop_block ul li:hover .descriptionDirection
-{
-    display: block;
-}
-
 
 
 /*************************************
@@ -434,7 +432,7 @@ div.store
 .clicksCountingZone
 {
     display: inline-block;
-    width: 55%;
+    width: 100vw;
     height: 100px;
     vertical-align: top;
     margin: 0 auto;
