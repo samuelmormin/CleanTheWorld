@@ -440,8 +440,8 @@ div.store
 
 @keyframes levelUpAnim
 {
-    from {transform: translateY(0);}
-    to   {transform: translateY(-10vh); opacity: 0;}
+    from {transform: translate(-50%, 0);}
+    to   {transform: translate(-50%, -10vh); opacity: 0;}
 }
 
 .displayNone
