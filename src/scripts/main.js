@@ -33,7 +33,7 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.current_image = 	5; //current planet state
 		clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 		clicker.global_var.detritus = 0; //number of detritus collected
-		clicker.global_var.detritus_click_result = 10; //number of detritus collected per click
+		clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
 		clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
 		clicker.global_var.money = 0; //Indicator of your money
 		clicker.global_var.money_total = 0 //total money collected
@@ -345,7 +345,7 @@ function purificationChecker(){
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
 		clicker.global_var.current_available++;
 		clicker.ressources.levelUp.classList.remove(".displayNone");
-//		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
+		//		alert("vous avez réussit le " + (clicker.global_var.current_level - 1) + " !!!! Aller au niveau " + clicker.global_var.current_level);
 		// clicker.ressources.clicker_level.innerHTML = clicker.global_var.current_level;
 		clicker.global_var.purification *= clicker.global_var.coefficient_purification;
 		clicker.global_var.purification_current = 0;
@@ -355,7 +355,7 @@ function purificationChecker(){
 		clicker.global_var.planet_current++;
 		setNewPlanet();
 		initialisePlanetImage();
-//		clicker.ressources.levelUp.classList.add(".displayNone");
+		//		clicker.ressources.levelUp.classList.add(".displayNone");
 		saveToLocal();
 	}
 }
@@ -419,19 +419,21 @@ function updateShop(){
 			newPrice.appendChild(textNewPrice);
 
 			var newBouttonDescrip = document.createElement("DIV");
-			
-			if(clicker.global_var.ressources[thisItem].typeItem == "click aids") {
-				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value+ " déchets par clic.");
+			newBouttonDescrip.classList.add("buttonDescription");
+			var buttonDescriptionContent = document.createElement("P");
+
+			if(clicker.global_var.ressources[i].typeItem == "click aids") {
+				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value + " déchets par clic.");
 			}
-			else if(clicker.global_var.ressources[thisItem].typeItem == "detritus auto") {
-				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value + " déchets par seconde.");
+			else if(clicker.global_var.ressources[i].typeItem == "detritus auto") {
+				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
 			}
 			else {
-				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value_energie + " énergei et "+																							clicker.global_var.ressources[thisItem].value_purification + " purification par seconde.");
+				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
 			}
 
-			newBouttonDescrip.classList.add("buttonDescription");
-			newBouttonDescrip.appendChild(newBouttonDescripText);
+			buttonDescriptionContent.appendChild(textNodeDescirp);
+			newBouttonDescrip.appendChild(buttonDescriptionContent);
 
 			var newBouttonDirection = document.createElement("DIV");
 			var newBouttonDirectionImage = document.createElement("IMG");
@@ -568,19 +570,21 @@ function initialiseShop(){
 		newPrice.appendChild(textNewPrice);
 
 		var newBouttonDescrip = document.createElement("DIV");
+		newBouttonDescrip.classList.add("buttonDescription");
+		var buttonDescriptionContent = document.createElement("P");
 
-		if(clicker.global_var.ressources[clicker.global_var.next_display_item].typeItem == "click aids") {
-			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[clicker.global_var.next_display_item].value+ " déchets par clic.");
+		if(clicker.global_var.ressources[i].typeItem == "click aids") {
+			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value + " déchets par clic.");
 		}
-		else if(clicker.global_var.ressources[clicker.global_var.next_display_item].typeItem == "detritus auto") {
-			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[clicker.global_var.next_display_item].value+ " déchets par seconde.");
+		else if(clicker.global_var.ressources[i].typeItem == "detritus auto") {
+			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
 		}
 		else {
-			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[clicker.global_var.next_display_item].value_energie + " énergei et "+																							clicker.global_var.ressources[clicker.global_var.next_display_item].value_purification + " purification par seconde.");
+			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
 		}
 
-		newBouttonDescrip.classList.add("buttonDescription");
-		newBouttonDescrip.appendChild(newBouttonDescripText);
+		buttonDescriptionContent.appendChild(textNodeDescirp);
+		newBouttonDescrip.appendChild(buttonDescriptionContent);
 
 		var newBouttonDirection = document.createElement("DIV");
 		var newBouttonDirectionImage = document.createElement("IMG");
@@ -661,19 +665,21 @@ function setSavedGame(){
 		newPrice.appendChild(textNewPrice);
 
 		var newBouttonDescrip = document.createElement("DIV");
+		newBouttonDescrip.classList.add("buttonDescription");
+		var buttonDescriptionContent = document.createElement("P");
 
 		if(clicker.global_var.ressources[i].typeItem == "click aids") {
-			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par clic.");
+			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value + " déchets par clic.");
 		}
 		else if(clicker.global_var.ressources[i].typeItem == "detritus auto") {
-			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
+			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
 		}
 		else {
-			var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
+			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
 		}
 
-		newBouttonDescrip.classList.add("buttonDescription");
-		newBouttonDescrip.appendChild(newBouttonDescripText);
+		buttonDescriptionContent.appendChild(textNodeDescirp);
+		newBouttonDescrip.appendChild(buttonDescriptionContent);
 
 		var newBouttonDirection = document.createElement("DIV");
 		var newBouttonDirectionImage = document.createElement("IMG");
@@ -689,7 +695,7 @@ function setSavedGame(){
 
 		clicker.ressources.shop.appendChild(newItem);
 		var upDateitem = i + 1;
-		
+
 		updateLiFonction(upDateitem);
 
 		if(clicker.global_var.ressources[i].show == 1){
