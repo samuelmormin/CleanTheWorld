@@ -49,7 +49,7 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.planet_current = 0;
 		clicker.global_var.ressources = [
 			{ 
-				name: "gants",
+				name: "Gants",
 				value: 2,
 				price: 5,
 				available: 0,
@@ -57,7 +57,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/gloveIcon.png",
 				show: 0},
 			{
-				name: "bonzaï",
+				name: "Bonzaï",
 				value_purification: 30,
 				value_energie: 2.5,
 				price: 10,
@@ -66,7 +66,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/bonzaiIcon.png",
 				show: 0},
 			{
-				name: "arbuste",
+				name: "Arbuste",
 				value_purification: 50,
 				value_energie: 5,
 				price: 20,
@@ -75,7 +75,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/littletreeIcon.png",
 				show: 0},
 			{
-				name: "eolienne",
+				name: "Eolienne",
 				value_purification: 10,
 				value_energie: 80,
 				price: 60,
@@ -84,7 +84,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/windturbineIcon.png",
 				show: 0},
 			{
-				name: "pince",//dfjffdfffffffffffffffffff
+				name: "Pince",
 				value: 5,
 				price: 65,
 				available: 0,
@@ -92,7 +92,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/pawIcon.png",
 				show: 0},
 			{
-				name: "buisson",
+				name: "Buisson",
 				value_purification: 70,
 				value_energie: 10,
 				price: 80,
@@ -101,7 +101,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/shrubIcon.png",
 				show: 0},
 			{
-				name: "bénévole écolo",
+				name: "Bénévole",
 				value: 5,
 				price: 100,
 				available: 0,
@@ -109,7 +109,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/volunteerIcon.png",
 				show: 0},
 			{
-				name: "arbre fruitier",
+				name: "Arbre fruitier",
 				value_purification: 100,
 				value_energie: 20,
 				price: 200,
@@ -118,7 +118,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/fruittreeIcon.png",
 				show: 0},
 			{
-				name: "ouvrier",
+				name: "Ouvrier",
 				value: 10,
 				price: 210,
 				available: 0,
@@ -126,7 +126,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/workerIcon.png",
 				show: 0},
 			{
-				name: "barrage",
+				name: "Barrage",
 				value_purification: 20,
 				value_energie: 100,
 				price: 250,
@@ -135,7 +135,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/hydraulicbamIcon.png",
 				show: 0},
 			{
-				name: "pelle",
+				name: "Pelle",
 				value: 30,
 				price: 320,
 				available: 0,
@@ -143,7 +143,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/spadeIcon.png",
 				show: 0},
 			{
-				name: "ouvrier spécialisé",
+				name: "Artisant",
 				value: 25,
 				price: 430,
 				available: 0,
@@ -151,7 +151,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/specialworkerIcon.png",
 				show: 0},
 			{
-				name: "brouette",
+				name: "Brouette",
 				value: 40,
 				price: 470,
 				available: 0,
@@ -159,7 +159,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/wheelbarrowIcon.png",
 				show: 0},
 			{
-				name: "walee",
+				name: "Walee",
 				value: 60,
 				price: 700,
 				available: 0,
@@ -167,7 +167,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/walleIcon.png",
 				show: 0},
 			{
-				name: "panneau solaire",//dfjffdfffffffffffffffffff
+				name: "Panneau",
 				value_purification: 30,
 				value_energie: 160,
 				price: 780,
@@ -176,7 +176,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/solarpanelIcon.png",
 				show: 0},
 			{
-				name: "hevea", //dfjffdfffffffffffffffffff
+				name: "Hevea", 
 				value_purification: 300,
 				value_energie: 40,
 				price: 900,
@@ -185,7 +185,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/heveaIcon.png",
 				show: 0},
 			{
-				name: "pelleteuse",
+				name: "Pelleteuse",
 				value: 100,
 				price: 1000,
 				available: 0,
@@ -193,7 +193,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/diggerIcon.png",
 				show: 0},
 			{
-				name: "super robot",
+				name: "Super robot",
 				value: 100,
 				price: 1200,
 				available: 0,
@@ -201,7 +201,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/superrobotIcon.png",
 				show: 0},
 			{
-				name: "centrale à fusion",//dfjffdfffffffffffffffffff
+				name: "Centrale",
 				value_purification: 40,
 				value_energie: 320,
 				price: 1300,
@@ -210,7 +210,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/powerstationIcon.png",
 				show: 0},
 			{
-				name: "arbre alienne",
+				name: "Arbre alienne",
 				value_purification: 700,
 				value_energie: 60,
 				price: 2100,
@@ -219,7 +219,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/alientree.png",
 				show: 0},
 			{
-				name: "régiment alienne",//dfjffdfffffffffffffffffff
+				name: "Régiment",
 				value: 200,
 				price: 2200,
 				available: 0,
@@ -227,7 +227,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/alienIcon.png",
 				show: 0},
 			{
-				name: "méga centrale",
+				name: "Méga fusion",
 				value_purification: 50,
 				value_energie: 780,
 				price: 2500,
@@ -236,7 +236,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/megacentralIcon.png",
 				show: 0},
 			{
-				name: "camion benne",
+				name: "Camion benne",
 				value: 500,
 				price: 3000,
 				available: 0,
@@ -244,7 +244,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/truckIcon.png",
 				show: 0},
 			{ 																															
-				name: "bataillon intergalactic", //dfjffdfffffffffffffffffff
+				name: "Bataillon", 
 				value: 500,
 				price: 3500,
 				available: 0,
@@ -252,7 +252,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/flagIcon.png",
 				show: 0},
 			{
-				name: "T 282B",//dfjffdfffffffffffffffffff
+				name: "T 282B",
 				value: 1000,
 				price: 7600,
 				available: 0,
@@ -260,7 +260,7 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/t282bIcon.png",
 				show: 0},
 			{
-				name: "l'armée des écolos intergalactic",
+				name: "Armée écolo",
 				value: 1000,
 				price: 10000,
 				available: 0,
@@ -270,15 +270,15 @@ if(typeof(Storage) !== "undefined") {
 		];
 		clicker.global_var.planet = [
 			{
-				name: "Planete Bleu",
+				name: "PLANETE BLEU",
 				images: ["src/img/planet1_1.png", "src/img/planet1_2.png", "src/img/planet1_3.png", "src/img/planet1_4.png", "src/img/planet1_5.png", "src/img/planet1_6.png"]
 			},
 			{
-				name: "Planete Rouge",
+				name: "PLANETE ROUGE",
 				images: ["src/img/planet2_1.png", "src/img/planet2_2.png", "src/img/planet2_3.png", "src/img/planet2_4.png", "src/img/planet2_5.png", "src/img/planet2_6.png"]
 			},
 			{
-				name: "Planete Oreo",
+				name: "PLANETE OREO",
 				images: ["src/img/planet3_1.png", "src/img/planet3_2.png", "src/img/planet3_3.png", "src/img/planet3_4.png", "src/img/planet3_5.png", "src/img/planet3_6.png"]
 			}
 		];
@@ -292,7 +292,7 @@ if(typeof(Storage) !== "undefined") {
 clicker.ressources.planet_current.addEventListener("click", function(){
 	clicker.global_var.detritus += clicker.global_var.detritus_click_result;
 	add_money(clicker.global_var.detritus_click_result, "detritus");
-	clicker.global_var.purification_current = clicker.global_var.purification_current + parseFloat(clicker.global_var.detritus_click_result/2);//10 detritus for 1 purification
+	clicker.global_var.purification_current = clicker.global_var.purification_current + parseFloat(clicker.global_var.detritus_click_result/2); //10 detritus for 1 purification
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 	purificationChecker();
@@ -318,13 +318,12 @@ function get_ressources(){
 
 	setTimeout(function() {
 		requestAnimationFrame(get_ressources);
-	}, 1000);
+	}, 1000); // call funtion after 1 second
 }
 
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
-		//		console.log(parseFloat(addCoeff/10))
 		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
 		saveToLocal();
@@ -424,7 +423,7 @@ function updateShop(){
 			newName.appendChild(textNewName);
 
 			var newPrice = document.createElement("P");
-			var textNewPrice = document.createTextNode(clicker.global_var.ressources[thisItem].price + ' pièces');
+			var textNewPrice = document.createTextNode(clicker.global_var.ressources[thisItem].price);
 			newPrice.classList.add("price-item");
 			newPrice.appendChild(textNewPrice);
 
@@ -520,7 +519,7 @@ function buyDetritusTool(item){
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
 		clicker.global_var.detritus_click_result += clicker.global_var.ressources[item].value; 
-		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièces";
+		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price;
 		updateInventory(item);
 	}
 }
@@ -533,7 +532,7 @@ function buyDetritusAids(item){
 		clicker.global_var.ressources[item].available++;
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * 1.2);
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
-		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièces";
+		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price;
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
 			get_ressources();
@@ -551,7 +550,7 @@ function buyEnergieItem(item){
 		clicker.global_var.purify_per_sec = parseFloat(clicker.global_var.purify_per_sec + clicker.global_var.ressources[item].value_purification/20);
 		clicker.global_var.ressources[item].available++;
 		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
-		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price + " pièces";
+		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price;
 		if(clicker.global_var.generat_per_sec != true){
 			clicker.global_var.generat_per_sec = false;
 			get_ressources();
@@ -575,7 +574,7 @@ function initialiseShop(){
 		newName.appendChild(textNewName);
 
 		var newPrice = document.createElement("P");
-		var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price + ' pièces');
+		var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price);
 		newPrice.classList.add("price-item");
 		newPrice.appendChild(textNewPrice);
 
@@ -670,7 +669,7 @@ function setSavedGame(){
 		newName.appendChild(textNewName);
 
 		var newPrice = document.createElement("P");
-		var textNewPrice = document.createTextNode(clicker.global_var.ressources[i].price + ' pièces');
+		var textNewPrice = document.createTextNode(clicker.global_var.ressources[i].price);
 		newPrice.classList.add("price-item");
 		newPrice.appendChild(textNewPrice);
 
