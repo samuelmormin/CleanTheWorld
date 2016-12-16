@@ -637,10 +637,6 @@ p.price-item
     padding: 10px 0 0 10px;
 }
 
-.rightMenu ul
-{
-    margin: -10px;
-}
 
 .rightMenu ul li a, .rightMenu ul li{
     cursor: default;
@@ -668,9 +664,7 @@ p.price-item
     font-size: 16px;
     color: #ffffff;
     font-family: 'Passion One', cursive;
-    text-align: center;
     margin-bottom: 20px;
-    width: 100%;
 }
 
 .inventory ul li
@@ -693,4 +687,28 @@ p.price-item
 .inventory ul li:nth-child(3n+1)
 {
     margin-left: 13px;
+}
+
+.muteSound
+{
+    position: absolute;
+    right: 0;
+    bottom: -10vh;
+    width: 100px;
+    height: 30px;
+    border: solid white;
+    border-radius: 25px;
+}
+
+.muteSound:hover
+{
+    cursor: pointer;
+}
+
+.muteSound p
+{
+    font-size: 15px;
+    color: white;
+    margin-top: 3px;
+    margin-left: 8px;
 }
