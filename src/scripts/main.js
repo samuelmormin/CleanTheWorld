@@ -3,7 +3,7 @@ clicker.ressources = {};
 
 //Ressources
 clicker.ressources.planet_current = document.querySelector(".planet"); // planet
-clicker.ressources.planet_images = document.querySelectorAll(".planet div");
+clicker.ressources.planet_images //will get all images of current planet
 clicker.ressources.detritus_result = document.querySelector(".counter"); // counter of detritus
 clicker.ressources.money = document.querySelector(".incrementingCoin"); //counter of money
 clicker.ressources.gauge = document.querySelector(".ratio2"); //gauge of purification
@@ -28,10 +28,10 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.current_level = 1; // start level
 		clicker.global_var.coeficient_price = 2; // coefficient for price
 		clicker.global_var.coefficient_purification = 4; // coefficient of purification for each level
-		clicker.global_var.current_image = 5; //current planet state
+		clicker.global_var.current_image = 	5; //current planet state
 		clicker.global_var.generat_per_sec = false; //permit to active only once the function generate per sec
 		clicker.global_var.detritus = 0; //number of detritus collected
-		clicker.global_var.detritus_click_result = 1; //number of detritus collected per click
+		clicker.global_var.detritus_click_result = 10; //number of detritus collected per click
 		clicker.global_var.money_convert_detritus = 10; //detritus convertor rate
 		clicker.global_var.money = 0; //Indicator of your money
 		clicker.global_var.money_total = 0 //total money collected
@@ -44,6 +44,7 @@ if(typeof(Storage) !== "undefined") {
 		clicker.global_var.purify_per_sec = 0; //purification per second
 		clicker.global_var.detritus_per_sec = 0; //detritus per second
 		clicker.global_var.next_display_item = 0; //item to display in the shop
+		clicker.global_var.planet_current = 0;
 		clicker.global_var.ressources = [
 			{ 
 				name: "gants",
@@ -265,6 +266,22 @@ if(typeof(Storage) !== "undefined") {
 				url: "src/img/ecoarmyIcon.png",
 				show: 0},
 		];
+		clicker.global_var.planet = [
+			{
+				name: "plannet-1",
+				images: ["src/img/planet1_1.png", "src/img/planet1_2.png", "src/img/planet1_3.png", "src/img/planet1_4.png", "src/img/planet1_5.png", "src/img/planet1_6.png"]
+			},
+			{
+				name: "plannet-1",
+				images: ["src/img/planet2_1.png", "src/img/planet2_2.png", "src/img/planet2_3.png", "src/img/planet2_4.png", "src/img/planet2_5.png", "src/img/planet2_6.png"]
+			},
+			{
+				name: "plannet-1",
+				images: ["src/img/planet3_1.png", "src/img/planet3_2.png", "src/img/planet3_3.png", "src/img/planet3_4.png", "src/img/planet3_5.png", "src/img/planet3_6.png"]
+			}
+		];
+
+		setNewPlanet();
 		initialiseShop();
 	}
 } 
@@ -332,6 +349,7 @@ function purificationChecker(){
 		clicker.global_var.purification_current_percentage = 0;
 		clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 		clicker.ressources.gauge.style = "transform: scaleX(0)";
+		setNewPlanet();
 		initialisePlanetImage();
 		saveToLocal();
 	}
@@ -339,11 +357,13 @@ function purificationChecker(){
 
 function updateLiFonction(thisLi){
 	thisLi--;
+	console.log("ajoute addEventListener " + thisLi);
 	clicker.ressources.shop_items = document.querySelectorAll('.clicker_shop_block ul li');
 	clicker.ressources.shop_items[thisLi].addEventListener("click", updateItemShop);
 }
 
 function planetImagesChange(){
+	clicker.ressources.planet_images = document.querySelectorAll(".planet div");
 	if ((clicker.global_var.purification_current_percentage > 17)&&(clicker.global_var.current_image == 5)) {
 		clicker.ressources.planet_images[clicker.global_var.current_image].classList.add("planetOpacity");
 		clicker.global_var.current_image--;
@@ -372,28 +392,30 @@ function initialisePlanetImage(){
 }
 
 function updateShop(){
+
 	if(clicker.global_var.next_display_item < clicker.global_var.ressources.length){
 		var next_item = clicker.global_var.ressources[clicker.global_var.next_display_item].price;
 		if(next_item <= clicker.global_var.money_total){
+			var thisItem = clicker.global_var.next_display_item;
 			var newItem = document.createElement("LI");
 			newItem.setAttribute("data-key", clicker.global_var.next_display_item);
 
 			var newIcon = document.createElement("IMG");
-			newIcon.setAttribute("src", clicker.global_var.ressources[clicker.global_var.next_display_item].url);
-			newIcon.setAttribute("alt", clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+			newIcon.setAttribute("src", clicker.global_var.ressources[thisItem].url);
+			newIcon.setAttribute("alt", clicker.global_var.ressources[thisItem].name);
 
 			var newName = document.createElement("P");
-			var textNewName = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+			var textNewName = document.createTextNode(clicker.global_var.ressources[thisItem].name);
 			newName.classList.add("name");
 			newName.appendChild(textNewName);
 
 			var newPrice = document.createElement("P");
-			var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price + ' pièces');
+			var textNewPrice = document.createTextNode(clicker.global_var.ressources[thisItem].price + ' pièces');
 			newPrice.classList.add("price-item");
 			newPrice.appendChild(textNewPrice);
 
 			var newBouttonDescrip = document.createElement("DIV");
-
+			
 			if(clicker.global_var.ressources[thisItem].typeItem == "click aids") {
 				var newBouttonDescripText = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[thisItem].value+ " déchets par clic.");
 			}
@@ -573,6 +595,29 @@ function initialiseShop(){
 
 }
 
+function setNewPlanet(){
+	clicker.global_var.planet_current = parseInt(parseFloat(Math.random()* 3));
+	console.log(clicker.global_var.planet_current);
+	var thisPlanet = clicker.global_var.planet_current;
+	var allPlanetImage = "";
+	for(var i = 0; i < 6; i++){
+		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
+		allPlanetImage += '" alt="" class="' + clicker.global_var.planet[thisPlanet].name + i + '"></div>';
+	}
+	console.log(allPlanetImage);
+	clicker.ressources.planet_current.innerHTML = allPlanetImage;
+}
+
+function setCurrentPlanet(){
+	var thisPlanet = clicker.global_var.planet_current;
+	var allPlanetImage = "";
+	for(var i = 0; i < 6; i++){
+		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
+		allPlanetImage += '" alt="" class="' + clicker.global_var.planet[thisPlanet].name + i + '"></div>';
+	}
+	console.log(allPlanetImage);
+	clicker.ressources.planet_current.innerHTML = allPlanetImage;
+}
 
 function saveToLocal(){
 	var txt = JSON.stringify(clicker.global_var);
@@ -584,10 +629,11 @@ function setSavedGame(){
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 	clicker.ressources.energie_total.innerHTML = parseInt(clicker.global_var.energie_total);
 	if(clicker.global_var.energie_total > 0) get_ressources();
+	setCurrentPlanet();
 	purificationChecker();
 	initialisePlanetImage();
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
-	console.log(clicker.global_var.money_total);
+	//Update current planet
 	for(var i = 0; i < clicker.global_var.next_display_item ; i++){
 		console.log(clicker.global_var.ressources[i].price <= clicker.global_var.money_total);
 		var newItem = document.createElement("LI");
@@ -634,6 +680,8 @@ function setSavedGame(){
 		newItem.appendChild(newBouttonDescrip);
 
 		clicker.ressources.shop.appendChild(newItem);
+		var upDateitem = i + 1;
+		updateLiFonction(upDateitem);
 
 		if(clicker.global_var.ressources[i].show == 1){
 			clicker.global_var.ressources[i].show = 1;
@@ -659,6 +707,7 @@ function setSavedGame(){
 			newItem.appendChild(newDiv);
 
 			clicker.ressources.inventory.appendChild(newItem);
+			updateInventory(i);
 		}
 	}
 }
@@ -667,19 +716,3 @@ clicker.ressources.logo.addEventListener("click", function(){
 	localStorage.removeItem("clicker_ressources");
 	location.reload();
 });
-
-
-var newBouttonDescrip = document.createElement("DIV");
-var newBouttonDescripText = document.createTextNode("Récolte 3 déchets par clic.");
-newBouttonDescrip.classList.add("buttonDescription");
-
-var newBouttonDirection = document.createElement("DIV");
-var newBouttonDirectionImage = document.createElement("IMG");
-newBouttonDirectionImage.setAttribute("src", "src/img/descriptionDirection.png");
-
-//<div class="buttonDescription">
-//	<p>Récolte 3 déchets par clic.</p>
-//		</div>
-//		<div class="descriptionDirection">
-//			<img src="src/img/descriptionDirection.png" alt="">
-//				</div>
