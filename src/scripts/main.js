@@ -13,7 +13,7 @@ clicker.ressources.shop = document.querySelector('.clicker_shop_block ul'); //sh
 clicker.ressources.shop_items = document.querySelector('.clicker_shop_block ul li'); //shop's items elements
 clicker.ressources.inventory = document.querySelector(".inventory ul"); //inventory element
 clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li"); //inventory items elements
-clicker.ressources.logo = document.querySelector(".header");
+clicker.ressources.logo = document.querySelector(".header");// logo of the game
 
 if(typeof(Storage) !== "undefined") {
 	if (localStorage.clicker_ressources) {
@@ -268,15 +268,15 @@ if(typeof(Storage) !== "undefined") {
 		];
 		clicker.global_var.planet = [
 			{
-				name: "plannet-1",
+				name: "Planete Bleu",
 				images: ["src/img/planet1_1.png", "src/img/planet1_2.png", "src/img/planet1_3.png", "src/img/planet1_4.png", "src/img/planet1_5.png", "src/img/planet1_6.png"]
 			},
 			{
-				name: "plannet-1",
+				name: "Planete Rouge",
 				images: ["src/img/planet2_1.png", "src/img/planet2_2.png", "src/img/planet2_3.png", "src/img/planet2_4.png", "src/img/planet2_5.png", "src/img/planet2_6.png"]
 			},
 			{
-				name: "plannet-1",
+				name: "Planete Oreo",
 				images: ["src/img/planet3_1.png", "src/img/planet3_2.png", "src/img/planet3_3.png", "src/img/planet3_4.png", "src/img/planet3_5.png", "src/img/planet3_6.png"]
 			}
 		];
@@ -357,9 +357,9 @@ function purificationChecker(){
 
 function updateLiFonction(thisLi){
 	thisLi--;
-	console.log("ajoute addEventListener " + thisLi);
 	clicker.ressources.shop_items = document.querySelectorAll('.clicker_shop_block ul li');
 	clicker.ressources.shop_items[thisLi].addEventListener("click", updateItemShop);
+	console.log(clicker.ressources.shop_items);
 }
 
 function planetImagesChange(){
@@ -392,7 +392,6 @@ function initialisePlanetImage(){
 }
 
 function updateShop(){
-
 	if(clicker.global_var.next_display_item < clicker.global_var.ressources.length){
 		var next_item = clicker.global_var.ressources[clicker.global_var.next_display_item].price;
 		if(next_item <= clicker.global_var.money_total){
@@ -596,9 +595,8 @@ function initialiseShop(){
 }
 
 function setNewPlanet(){
-	clicker.global_var.planet_current = parseInt(parseFloat(Math.random()* 3));
 	console.log(clicker.global_var.planet_current);
-	var thisPlanet = clicker.global_var.planet_current;
+	var thisPlanet = clicker.global_var.planet_current % 3;
 	var allPlanetImage = "";
 	for(var i = 0; i < 6; i++){
 		allPlanetImage += '<div><img src="' + clicker.global_var.planet[thisPlanet].images[i]; 
@@ -606,6 +604,7 @@ function setNewPlanet(){
 	}
 	console.log(allPlanetImage);
 	clicker.ressources.planet_current.innerHTML = allPlanetImage;
+	clicker.global_var.planet_current++;
 }
 
 function setCurrentPlanet(){
@@ -635,9 +634,9 @@ function setSavedGame(){
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 	//Update current planet
 	for(var i = 0; i < clicker.global_var.next_display_item ; i++){
-		console.log(clicker.global_var.ressources[i].price <= clicker.global_var.money_total);
+		console.log(i);
 		var newItem = document.createElement("LI");
-		newItem.setAttribute("data-key", clicker.global_var.next_display_item);
+		newItem.setAttribute("data-key", i);
 
 		var newIcon = document.createElement("IMG");
 		newIcon.setAttribute("src", clicker.global_var.ressources[i].url);
@@ -681,6 +680,7 @@ function setSavedGame(){
 
 		clicker.ressources.shop.appendChild(newItem);
 		var upDateitem = i + 1;
+		
 		updateLiFonction(upDateitem);
 
 		if(clicker.global_var.ressources[i].show == 1){
