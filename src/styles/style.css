@@ -416,7 +416,7 @@ div.store
 
 .levelUp{
     position: absolute;
-    top: 22vh;
+    top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
     font-size: 50px;
@@ -425,6 +425,21 @@ div.store
     z-index: 101;
     display: block;
 }
+
+.levelUpAnim
+{
+    animation: levelUpAnim 3s ease-out;
+}
+
+
+@keyframes levelUpAnim
+{
+    from {transform: translateY(0);}
+    to   {transform: translateY(10vh); opacity: 0;}
+}
+
+
+
 
 .displayNone
 {
