@@ -321,6 +321,7 @@ function get_ressources(){
 	}, 1000); // call funtion after 1 second
 }
 
+//
 function add_money(addCoeff, type){
 	if(type == "detritus"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
