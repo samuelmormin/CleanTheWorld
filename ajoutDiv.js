@@ -1,4 +1,5 @@
 var store = document.querySelector('.store');
+var clicker_shop_title = document.querySelector('.clicker_shop_title');
 var clicker_shop_block = document.querySelector('.clicker_shop_block ul');
 var clicker_shop_block_li = document.querySelector('.clicker_shop_block ul li');
 var inventory_ul = document.querySelector('.inventory ul');
@@ -88,5 +89,15 @@ function showAnecdotes(){
 }
 
 setTimeout(function() {
-		requestAnimationFrame(showAnecdotes);
-	}, 10000);
+    requestAnimationFrame(showAnecdotes);
+}, 10000);
+
+clicker_shop_title.addEventListener('click', function(){
+    if(clicker_shop_block.classList.contains('openShop')){
+        clicker_shop_block.classList.remove('openShop');
+        store.style = 'background: none; border: none; z-index: 0;';
+    }else{
+        clicker_shop_block.classList.add('openShop');
+        store.style = 'background: rgba(3, 50, 108, 0.7); border: 1px solid #5d8833; z-index: 7;';
+    }
+});

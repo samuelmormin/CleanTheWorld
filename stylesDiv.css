@@ -38,6 +38,11 @@ inventaire
 
 ***********/
 
+.inventory ul{
+    width: 100%;
+    display: block;
+}
+
 .inventory ul li{
     position: relative;
 }
@@ -62,4 +67,13 @@ inventaire
 
 .inventory ul li div p{
     transform: translateY(-12px);
+}
+
+/************
+
+
+************/
+
+.openShop{
+    transform: translateX(300px);
 }

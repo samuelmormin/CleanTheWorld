@@ -1,3 +1,69 @@
-@media only screen and (min-width:700px){
+@media only screen and (max-width:950px){
+    .rightMenu{
+        transform: translateX(-10%);
+    }
     
+    .rightMenu ul:nth-child(1) li{
+        width: 150px;
+    }
+    
+    .rightMenu ul li a p.incrementingCoin{
+        left: 38%;
+    }
+    
+    .rightMenu ul li a p.incrementingText{
+        display: none;
+        right: none;
+    }
+    
+    .inventory{
+        padding: none;
+        transform: translateX(-30px);
+    }
+    
+    .inventory ul{
+        width: 100%;
+    }
+    .inventory ul li:nth-child(3n+1){
+        margin-left: none;
+    }
+}
+
+@media only screen and (max-width:750px){
+    
+    .clicker_shop_block{
+        transform: translateX(-300px);
+    }
+    
+    .clicksCountingZone{
+        margin: none;
+    }
+    
+    .moon{
+        top: inherit;
+    }
+    
+    .store{
+        transform: translateY(70px);
+    }
+    
+    .store .clicker_shop_title{
+        width: 200px;
+        transform: translateX(30px);
+        border-radius: 10px;
+        background: rgba(3, 50, 108, 0.3);
+        border: 1px solid #5d8833;
+        text-align: center;
+    }
+    
+    .store .clicker_shop_title h2{
+        margin: inherit;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .anecdote{
+        display: none;
+    }
 }
