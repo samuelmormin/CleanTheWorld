@@ -414,14 +414,10 @@ div.store
     top: 19px;
     left: -9px;
 }
-.costBgd
+.buttonDescription p
 {
-    position: absolute;
-    top: 121px;
-    left: 167px;
-    z-index: -1;
+    padding-top: 10px;
 }
-
 /*************************************
 
         clicksCountingZone
@@ -483,11 +479,10 @@ div.store
 
 .counter:before
 {
-    content: url(http://utveckling.fr/CleanTheWorld/src/img/garbageIcon.png);
     position: absolute;
-    z-index: 3;
-    left: -120px;
-    top: -20px;
+    left: -87px;
+    top: -10px;
+    content: url(http://utveckling.fr/CleanTheWorld/src/img/garbageIcon.png);
 }
 
 
@@ -497,12 +492,6 @@ div.store
     color: white;
     font-family: 'Passion One', cursive;
     margin-top: 9px;
-}
-.garbage
-{
-    width: 100px;
-    height: 100px;
-    background: red;
 }
 
 
@@ -625,16 +614,17 @@ div.store
     padding-top: 15px;
 }
 
-p.price-item
+.price-item
 {
     position: absolute;
-    top: 4px;
-    left: 148px;
     width: 76px;
     height: 30px;
-    right: 10%;
+    background: red;
+    top: 4px;
+    right: 5px;
     background: url(/src/img/costBackground.png);
-    padding: 10px 0 0 10px;
+    padding-top: 10px;
+    padding-left: 15px;
 }
 
 
