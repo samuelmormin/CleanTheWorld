@@ -247,6 +247,7 @@ div.planet img
 {
     animation: clickEffect1 ease 0.10s;
     transform-origin: center;
+    will-change: transform;
 }
 
 @keyframes clickEffect1
@@ -431,6 +432,7 @@ div.store
     color: white;
     z-index: 101;
     display: block;
+    will-change: transform;
 }
 
 .levelUpAnim
