@@ -9,8 +9,7 @@
     <title>Eco Click</title>
 
     <link rel="stylesheet" href="src/styles/initialiser.css" />
-    <link rel="stylesheet" href="src/styles/style.css">
-    <link rel="stylesheet" href="src/styles/hover.min.css">
+    <link rel="stylesheet" href="src/styles/style.min.css">
     	
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicons/apple-touch-icon.png">
@@ -21,7 +20,7 @@
     <meta name="theme-color" content="#b2d8e1">
     <!--fin favicon -->
 
-    <link rel="stylesheet" href="src/styles/stylesDiv.min.css">
+    <link rel="stylesheet" href="src/styles/stylesDiv.css">
     <link href="https://fonts.googleapis.com/css?family=Passion+One:400,700" rel="stylesheet">
     <link rel="stylesheet" href="src/styles/responsive.min.css">
 </head>
@@ -58,7 +57,7 @@
         </div>
 
         <!-- MiddleClikZone -->
-        <div class="levelUp displayNone"><p>LEVEL UP ! Clean the next planet !</p></div>
+        <div class="levelUp displayNone"><p class="noselect">LEVEL UP ! Clean the next planet !</p></div>
         <div class="clicksCountingZone">
             <div class="counter">0</div>
             <p class="counterDescription">DÉCHETS RÉCOLTÉS</p>
@@ -113,7 +112,9 @@
     				<source src="src/sound/ghost_naps.mp3" type="audio/mpeg">
     		<!-- Si vous aimez la musique vous la trouverez sur YouTube : Ghost Naps de Izzard -->
         </audio>
-        <div class="muteSound"><p>Mute Sound</p></div>
+        
+        <div class="control muteSound"><p>Mute Sound</p></div>
+        <div class="control saveGame opacity"><p>Save</p></div>
 
         </div>
 
@@ -121,5 +122,4 @@
         <script src="src/scripts/ajoutDiv.min.js"></script>
         <script src="src/scripts/script.min.js"></script>
 </body>
-
 </html>
