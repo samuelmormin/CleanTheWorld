@@ -15,14 +15,13 @@ clicker.ressources.inventory = document.querySelector(".inventory ul"); //invent
 clicker.ressources.inventory_items = document.querySelectorAll(".inventory ul li"); //inventory items elements
 clicker.ressources.logo = document.querySelector(".logo");// logo of the game
 clicker.ressources.planet_name = document.querySelector(".planetName"); //current planet name
-clicker.ressources.levelUp = document.querySelector(".levelUp"); //levelup Animation
-clicker.ressources.saveGame = document.querySelector(".saveGame");
+clicker.ressources.levelUp = document.querySelector(".levelUp");
 
-if(typeof(Storage) != "undefined") { //If local storage exist
+if(typeof(Storage) !== "undefined") { //If local storage exist
 	if (localStorage.clicker_ressources) { //if aleready play to the game
+
 		clicker.global_var = JSON.parse(localStorage.clicker_ressources);
 		setSavedGame(); //initialise the game
-		if(clicker.ressources.saveGame.classList.contains("opacity") != true) clicker.ressources.saveGame.classList.add("opacity");
 
 	} else {
 		clicker.global_var = {};
@@ -288,13 +287,6 @@ if(typeof(Storage) != "undefined") { //If local storage exist
 	}
 } 
 
-clicker.ressources.saveGame.addEventListener("click", function(){
-	if(clicker.ressources.saveGame.classList.contains("opacity") != true){
-		saveToLocal();
-		clicker.ressources.saveGame.classList.toggle("opacity");
-	}
-});
-
 // incrementation of detritus
 clicker.ressources.planet_current.addEventListener("click", function(){
 	clicker.global_var.detritus += clicker.global_var.detritus_click_result;
@@ -303,7 +295,7 @@ clicker.ressources.planet_current.addEventListener("click", function(){
 	clicker.ressources.detritus_result.innerHTML = clicker.global_var.detritus;
 	clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 	purificationChecker();
-	if(clicker.ressources.saveGame.classList.contains("opacity")) clicker.ressources.saveGame.classList.toggle("opacity");
+	saveToLocal();
 });
 
 /*generate ressources per second*/
@@ -321,7 +313,7 @@ function get_ressources(){
 	clicker.global_var.purification_current += parseFloat(clicker.global_var.purify_per_sec/4);
 	purificationChecker();
 
-	if(clicker.ressources.saveGame.classList.contains("opacity")) clicker.ressources.saveGame.classList.toggle("opacity");
+	saveToLocal();
 
 	setTimeout(function() {
 		requestAnimationFrame(get_ressources);
@@ -334,12 +326,12 @@ function add_money(addCoeff, type){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/10);
 		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
-
+		saveToLocal();
 	} else if(type == "energie"){
 		clicker.global_var.money = clicker.global_var.money + parseFloat(addCoeff/5);
 		clicker.global_var.money_total += parseFloat(addCoeff/10);
 		updateShop();
-
+		saveToLocal();
 	}
 }
 
@@ -348,7 +340,7 @@ function purificationChecker(){
 	clicker.global_var.purification_current_percentage = parseInt(parseFloat(clicker.global_var.purification_current/clicker.global_var.purification*100));
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
 	clicker.ressources.gauge.style = "transform: scaleX(" + (clicker.global_var.purification_current/clicker.global_var.purification*100)/100 + ")";
-	planetImagesChange(clicker.global_var.current_image);
+	planetImagesChange();
 	if(clicker.global_var.purification_current >= clicker.global_var.purification){
 		clicker.global_var.current_available++;
 		levelUp();
@@ -360,9 +352,8 @@ function purificationChecker(){
 		clicker.global_var.planet_current++;
 		setNewPlanet();
 		initialisePlanetImage();
-
+		saveToLocal();
 	}
-	if(clicker.ressources.saveGame.classList.contains("opacity")) clicker.ressources.saveGame.classList.toggle("opacity");
 }
 
 //levelUp
@@ -383,22 +374,22 @@ function updateLiFonction(thisLi){
 }
 
 //change the state of current planet
-function planetImagesChange(current){
+function planetImagesChange(){
 	clicker.ressources.planet_images = document.querySelectorAll(".planet div");
 	if ((clicker.global_var.purification_current_percentage > 17)&&(clicker.global_var.current_image == 5)) {
-		clicker.ressources.planet_images[current].classList.add("planetOpacity");
+		clicker.ressources.planet_images[clicker.global_var.current_image].classList.add("planetOpacity");
 		clicker.global_var.current_image--;
 	}else if ((clicker.global_var.purification_current_percentage > 34)&&(clicker.global_var.current_image == 4)) {
-		clicker.ressources.planet_images[current].classList.add("planetOpacity");
+		clicker.ressources.planet_images[clicker.global_var.current_image].classList.add("planetOpacity");
 		clicker.global_var.current_image--;
 	}else if ((clicker.global_var.purification_current_percentage > 51)&&(clicker.global_var.current_image == 3)) {
-		clicker.ressources.planet_images[current].classList.add("planetOpacity");
+		clicker.ressources.planet_images[clicker.global_var.current_image].classList.add("planetOpacity");
 		clicker.global_var.current_image--;
 	}else if ((clicker.global_var.purification_current_percentage > 68)&&(clicker.global_var.current_image == 2)) {
-		clicker.ressources.planet_images[current].classList.add("planetOpacity");
+		clicker.ressources.planet_images[clicker.global_var.current_image].classList.add("planetOpacity");
 		clicker.global_var.current_image--;
 	}else if ((clicker.global_var.purification_current_percentage > 85)&&(clicker.global_var.current_image == 1)) {
-		clicker.ressources.planet_images[current].classList.add("planetOpacity");
+		clicker.ressources.planet_images[clicker.global_var.current_image].classList.add("planetOpacity");
 		clicker.global_var.current_image--;
 	}
 }
@@ -417,20 +408,21 @@ function updateShop(){
 	if(clicker.global_var.next_display_item < clicker.global_var.ressources.length){
 		var next_item = clicker.global_var.ressources[clicker.global_var.next_display_item].price;
 		if(next_item <= clicker.global_var.money_total){
+			var thisItem = clicker.global_var.next_display_item;
 			var newItem = document.createElement("LI");
 			newItem.setAttribute("data-key", clicker.global_var.next_display_item);
 
 			var newIcon = document.createElement("IMG");
-			newIcon.setAttribute("src", clicker.global_var.ressources[clicker.global_var.next_display_item].url);
-			newIcon.setAttribute("alt", clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+			newIcon.setAttribute("src", clicker.global_var.ressources[thisItem].url);
+			newIcon.setAttribute("alt", clicker.global_var.ressources[thisItem].name);
 
 			var newName = document.createElement("P");
-			var textNewName = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].name);
+			var textNewName = document.createTextNode(clicker.global_var.ressources[thisItem].name);
 			newName.classList.add("name");
 			newName.appendChild(textNewName);
 
 			var newPrice = document.createElement("P");
-			var textNewPrice = document.createTextNode(clicker.global_var.ressources[clicker.global_var.next_display_item].price);
+			var textNewPrice = document.createTextNode(clicker.global_var.ressources[thisItem].price);
 			newPrice.classList.add("price-item");
 			newPrice.appendChild(textNewPrice);
 
@@ -438,19 +430,14 @@ function updateShop(){
 			newBouttonDescrip.classList.add("buttonDescription");
 			var buttonDescriptionContent = document.createElement("P");
 
-			if(clicker.global_var.ressources[clicker.global_var.next_display_item].typeItem == "click aids") {
-				console.log(clicker.global_var.ressources[clicker.global_var.next_display_item].name + "-" + clicker.global_var.ressources[clicker.global_var.next_display_item].value);
-				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[clicker.global_var.next_display_item].value + " déchets par clic.");
+			if(clicker.global_var.ressources[i].typeItem == "click aids") {
+				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value + " déchets par clic.");
 			}
-			else if(clicker.global_var.ressources[clicker.global_var.next_display_item].typeItem == "detritus auto") {
-				console.log(clicker.global_var.ressources[clicker.global_var.next_display_item].name + "-" + clicker.global_var.ressources[clicker.global_var.next_display_item].value);
-				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[clicker.global_var.next_display_item].value+ " déchets par seconde.");
+			else if(clicker.global_var.ressources[i].typeItem == "detritus auto") {
+				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
 			}
 			else {
-				console.log(clicker.global_var.ressources[clicker.global_var.next_display_item].name + "-" + clicker.global_var.ressources[clicker.global_var.next_display_item].value_purification);
-				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[clicker.global_var.next_display_item].value_energie + 
-																											" énergei et " +																							clicker.global_var.ressources[clicker.global_var.next_display_item].value_purification + 
-																											" purification par seconde.");
+				var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
 			}
 
 			buttonDescriptionContent.appendChild(textNodeDescirp);
@@ -470,9 +457,8 @@ function updateShop(){
 
 			clicker.ressources.shop.appendChild(newItem);
 			clicker.global_var.next_display_item++;
-
 			updateLiFonction(clicker.global_var.next_display_item);
-
+			saveToLocal();
 		}
 	}
 }
@@ -483,7 +469,7 @@ function updateItemShop(){
 	if(clicker.global_var.ressources[thisItem].typeItem == "click aids") buyDetritusTool(thisItem);
 	else if(clicker.global_var.ressources[thisItem].typeItem == "detritus auto") buyDetritusAids(thisItem);
 	else if(clicker.global_var.ressources[thisItem].typeItem == "energie tools") buyEnergieItem(thisItem);
-
+	saveToLocal();
 }
 
 function updateInventory(thisItem){
@@ -543,7 +529,7 @@ function buyDetritusAids(item){
 		clicker.global_var.money -= clicker.global_var.ressources[item].price;
 		clicker.global_var.detritus_per_sec += clicker.global_var.ressources[item].value;
 		clicker.global_var.ressources[item].available++;
-		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * clicker.global_var.coeficient_price);
+		clicker.global_var.ressources[item].price = parseFloat(clicker.global_var.ressources[item].price * 1.2);
 		clicker.ressources.money.innerHTML = parseInt(clicker.global_var.money);
 		clicker.ressources.shop_items[item].querySelector(".price-item").innerHTML = clicker.global_var.ressources[item].price;
 		if(clicker.global_var.generat_per_sec != true){
@@ -625,7 +611,7 @@ function initialiseShop(){
 		clicker.global_var.next_display_item++;
 		updateLiFonction(clicker.global_var.next_display_item);
 	}
-
+	saveToLocal();
 
 }
 
@@ -668,11 +654,8 @@ function setSavedGame(){
 	setCurrentPlanet();
 	purificationChecker();
 	initialisePlanetImage();
-	for(var j = 5; j >= clicker.global_var.current_image; j--){
-		planetImagesChange(clicker.global_var.current_image);
-	}
 	clicker.ressources.gauge_percent.innerHTML = clicker.global_var.purification_current_percentage + " %";
-
+	
 	//Update current planet
 	for(var i = 0; i < clicker.global_var.next_display_item ; i++){
 		var newItem = document.createElement("LI");
@@ -702,7 +685,7 @@ function setSavedGame(){
 		else if(clicker.global_var.ressources[i].typeItem == "detritus auto") {
 			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value+ " déchets par seconde.");
 		}
-		else { 
+		else {
 			var textNodeDescirp = document.createTextNode("Récolte " + 																												clicker.global_var.ressources[i].value_energie + " énergei et "+																							clicker.global_var.ressources[i].value_purification + " purification par seconde.");
 		}
 

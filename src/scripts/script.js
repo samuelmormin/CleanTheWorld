@@ -4,7 +4,7 @@ var mouseDiv             = document.querySelector("div.mouseClickEffect");      
 var mouse                = { x : 0, y : 0 };                                    //Position du corseur de la souris
 var mouseDivPosition     = { x : 0, y : 0 };                                    //Position de la div pour l'animation
 var mouseDivChild        =  document.querySelector("div.mouseDiv p");           //Enfant de la div pour oneAnim
-var muteSound            =  document.querySelector(".control .muteSound");
+var muteSound            =  document.querySelector("div.muteSound");
 var audio                =  document.querySelector("audio");
 
 //ANIMATION ON CLICK PLANETS
